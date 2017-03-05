@@ -31,24 +31,6 @@ header
 	cursor: default;
 }
 
-/**
- * Header Logo
- 
-header > img
-{
-	-webkit-user-drag: none;
-	position: relative;
-	left: 50%;
-	top: 110px;
-	transform: translate(-50%, 00%);
-	width: 20vw;
-	min-width: 180px;
-	max-width: 280px;
-	text-align: center;
-	transition: 1s ease-in-out;
-	will-change: all;
-}*/
-
 header > h1 > img
 {
 	width: 180px;
@@ -75,7 +57,7 @@ header > h1
 	text-align: center;
 	font-weight: lighter;
 	font-size: 4.5rem;
-	margin: 16% 4vw 1vw 4vw;
+	margin: 35vh 4vw 1vw 4vw;
 	text-shadow: 0px 0px 12px rgb(255, 70, 0);
 }
 
@@ -146,9 +128,7 @@ header > #partners
 	left: 50vw;
 	transform: translate(-50%, -40%);
 	display: table-cell;
-	padding: auto;
-	padding-top: 50px;
-	margin: auto;
+	padding-top: 5px;
 }
 
 header > #partners > A > img
@@ -160,18 +140,22 @@ header > #partners > A > img
 
 main
 {
-	width: 50%;
-	margin: auto;
-	padding: auto;
+	width: 100vw;
+	background-color: #202020;
 }
 
 main > section
 {
-	width: 40%;
-	margin-right: auto;
+	width: 100%;
+	max-width: 900px;
+	min-width: 500px;
+	margin: auto;
+	background-color: #303030; /* For design stage only, delete when release */
+	border: 1px solid #FF3300; /* For design stage only, delete when release */
+	padding: 25px;
 }
 
-
+/*-- Partners Logo Setup --*/
 #partners_logo_hyperx
 {
 	height: 40px;
@@ -213,3 +197,5 @@ main > section
 	-webkit-filter: drop-shadow(0px 0px 12px rgb(50, 255, 0));
 	transition: 400ms all;
 }
+
+/*-- END: Partners Logo Setup --*/
