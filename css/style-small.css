@@ -1,0 +1,37 @@
+@media (max-width: 711px)
+{
+	header > nav
+	{
+		position: relative;
+		left: 50%;
+		transform: translate(-50%, 0%);
+		display: inline-block;
+		margin: auto;
+	}
+
+	header > nav > li
+	{
+		display: table-cell;
+		padding: 35px 5vw 10px 0px;
+	}
+
+	header > h1 > img
+	{
+		display: block;
+		position: relative;
+		left: 50%;
+		transform: translate(-50%, 0%);
+		text-align: center;
+	}
+
+	header > #partners
+	{
+		padding-top: 50%;
+	}
+
+	header > #partners > A > img
+	{
+		display: block;
+		padding: 10px 0px 20px 0px;
+	}
+}
