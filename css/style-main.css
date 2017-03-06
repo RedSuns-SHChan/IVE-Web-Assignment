@@ -13,6 +13,20 @@ body
 	overflow-x: hidden;
 }
 
+::selection
+{
+	background-color: rgba(255, 80, 0, 0.4);
+	color: #DDD;
+	text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+::-moz-selection
+{
+	background-color: rgba(255, 80, 0, 0.4);
+	color: #DDD;
+	text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.4);
+}
+
 /**
  * Header
  */
@@ -199,3 +213,17 @@ main > section
 }
 
 /*-- END: Partners Logo Setup --*/
+
+main > section > h1
+{
+	color: #FF3300;
+	font-weight: 600;
+	font-size: 3.6rem;
+	letter-spacing: 1px;
+	text-shadow: 0px 0px 7px #FF3300;
+}
+
+.match_result
+{
+	
+}
