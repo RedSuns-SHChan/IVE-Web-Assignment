@@ -155,7 +155,7 @@ header > #partners > A > img
 main
 {
 	width: 100vw;
-	background-color: #202020;
+	/*background-color: #202020;*/
 }
 
 main > section
@@ -164,8 +164,6 @@ main > section
 	max-width: 900px;
 	min-width: 500px;
 	margin: auto;
-	background-color: #303030; /* For design stage only, delete when release */
-	border: 1px solid #FF3300; /* For design stage only, delete when release */
 	padding: 25px;
 }
 
@@ -225,5 +223,43 @@ main > section > h1
 
 .match_result
 {
-	
+	background-color: #303030;
+	box-shadow: 0px 0px 12px 0px rgba(255, 70, 0, 0.8);
+	border-radius: 3px;
+	padding: 12px;
+	margin: 20px;
 }
+
+.match_result:hover
+{
+	box-shadow: 0px 0px 20px 3px rgba(255, 70, 0, 0.8);
+}
+
+.match_result > h2
+{
+	margin-left: 16px;
+	word-spacing: 5px;
+}
+
+.match_result > img
+{
+	display: inline-block;
+	vertical-align: middle;
+	height: 40px;
+	padding: 16px;
+}
+
+.match_result > .match_win
+{
+	color: #88FF88;
+	font-weight: bold;
+	font-size: 1.5rem;
+}
+
+.match_result > .match_lose
+{
+	color: #FF4444;
+	font-weight: bold;
+	font-size: 1.5rem;
+}
+
