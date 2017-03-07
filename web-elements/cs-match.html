@@ -1,0 +1,11 @@
+<!doctype html>
+<html>
+	<template>
+		
+	</template>
+	<script>
+		var template = document.getElementsByTagName("TEMPLATE")[0].innerHTML;
+		var proto = Object.create(HTMLElement.prototype);
+		document.registerElement("cs-match", {prototype:proto});
+	</script>
+</html>

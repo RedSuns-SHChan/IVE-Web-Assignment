@@ -226,19 +226,13 @@ main > section > h1
 	background-color: #303030;
 	box-shadow: 0px 0px 12px 0px rgba(255, 70, 0, 0.8);
 	border-radius: 3px;
-	padding: 12px;
+	padding: 6px 24px 6px 24px;
 	margin: 20px;
 }
 
 .match_result:hover
 {
 	box-shadow: 0px 0px 20px 3px rgba(255, 70, 0, 0.8);
-}
-
-.match_result > h2
-{
-	margin-left: 16px;
-	word-spacing: 5px;
 }
 
 .match_result > img
@@ -261,5 +255,10 @@ main > section > h1
 	color: #FF4444;
 	font-weight: bold;
 	font-size: 1.5rem;
+}
+
+.match_result > .teamname
+{
+	
 }
 
