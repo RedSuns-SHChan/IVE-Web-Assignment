@@ -1,11 +1,25 @@
 <!doctype html>
 <html>
 	<template>
-		
+		<h1 style="color:#f00;">Included</h1>
 	</template>
 	<script>
-		var template = document.getElementsByTagName("TEMPLATE")[0].innerHTML;
+		var template = document.currentScript.ownerDocument.getElementsByTagName("TEMPLATE")[0].innerHTML;
 		var proto = Object.create(HTMLElement.prototype);
-		document.registerElement("cs-match", {prototype:proto});
+		
+		proto.createdCallback = function() {
+			var shadow = this.createShadowRoot();
+			shadow.innerHTML = template;
+		};
+		
+		proto.attachedCallback = function() {
+			
+		};
+		
+		proto.attributeChangedCallback = function() {
+			
+		};
+		
+		document.registerElement("cs-match", { prototype:proto });
 	</script>
 </html>
