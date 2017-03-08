@@ -1,23 +1,67 @@
 <!doctype html>
 <html>
 	<template>
-		<h1 style="color:#f00;">Included</h1>
+	<style>
+	div.container
+	{
+		display: block;
+		margin: 20px;
+		background-color: #161616;
+	}
+	
+	span.teamname
+	{
+		texsize: 2.7rem;
+		color: #FFFFFF;
+		font-weight: bold;
+	}
+	
+	img
+	{
+		vertical-align: middle;
+		width: 30px;
+		padding: 0px 10px 0px 10px;
+	}
+	
+	#result
+	{
+		font-size: 2.8rem;
+		font-weight: bold;
+	}
+	</style>
+	<div class="container">
+		<span class="teamname">{{team1}}</span>
+		<img src="{{icon1}}"/>
+		<span id="result">{{result}}</span>
+		<img src="{{icon2}}"/>
+		<span class="teamname">{{team2}}</span>
+	</div>
 	</template>
 	<script>
 		var template = document.currentScript.ownerDocument.getElementsByTagName("TEMPLATE")[0].innerHTML;
 		var proto = Object.create(HTMLElement.prototype);
 		
+		var getTeamData = function(shortname) {
+			var request = new XMLHttpRequest();
+			request.open("GET", "../imgs/teams/" + shortname + ".cfg", false);
+			request.send(null);
+			
+			return {
+				"fullname" : request.responseText,
+				"logo" : "../imgs/teams/" + shortname + ".png"
+			};
+		};
+		
 		proto.createdCallback = function() {
 			var shadow = this.createShadowRoot();
+			var team1 = getTeamData(this.getAttribute("team1"));
+			var team2 = getTeamData(this.getAttribute("team2"));
+			template = template.replace("{{team1}}", team1["fullname"]);
+			template = template.replace("{{icon1}}", team1["logo"]);
+			template = template.replace("{{team2}}", team2["fullname"]);
+			template = template.replace("{{icon2}}", team2["logo"]);
+			template = template.replace("{{result}}", this.innerText);
 			shadow.innerHTML = template;
-		};
-		
-		proto.attachedCallback = function() {
-			
-		};
-		
-		proto.attributeChangedCallback = function() {
-			
 		};
 		
 		document.registerElement("cs-match", { prototype:proto });
