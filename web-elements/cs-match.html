@@ -43,7 +43,7 @@
 		
 		var getTeamData = function(shortname) {
 			var request = new XMLHttpRequest();
-			request.open("GET", "https://" + window.location.href + "imgs/teams/" + shortname + ".cfg", true);
+			request.open("GET", window.location.href + "imgs/teams/" + shortname + ".cfg", true);
 			request.send(null);
 			
 			return {
