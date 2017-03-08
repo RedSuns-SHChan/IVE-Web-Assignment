@@ -37,6 +37,49 @@
 		<span class="teamname">{{team2}}</span>
 	</div>
 	</template>
+	
+	<script>
+		var CsMatch = Object.create(HTMLElement.prototype);
+		var CsMatchTemplate = document.currentScript.ownerDocument.getElementsByTagName("TEMPLATE")[0].innerHTML;
+		var getTeamData(shortname) {
+			return {
+				"url" : window.location.href + "imgs/teams/" + shortname + ".cfg",
+				"icon" : "./imgs/teams/" + shortname + ".png"
+			};
+		}
+		CsMatch.createdCallback = function() {
+			var shadow = this.createShadowRoot();
+			var team1 = getTeamData(this.getAttribute("team1"));
+			var team2 = getTeamData(this.getAttribute("team2"));
+			var t = CsMatchTemplate;
+			
+			// Get Team 1 Full Name
+			var request1 = new XMLHttpRequest();
+			request1.open("GET", team1["url"], true);
+			request1.responseType = "text";
+			request1.onload = function() {
+				console.log("Response recieved. Status = " + this.status);
+				shadow.innerHTML = element.innerHTML.replace("{{team1}}", this.responseText);
+			};
+			request1.send();
+			
+			// Get Team 2 Full Name
+			var request2 = new XMLHttpRequest();
+			request2.open("GET", team2["url"], true);
+			request2.responseType = "text";
+			request2.onload = function() {
+				console.log("Response recieved. Status = " + this.status);
+				shadow.innerHTML = element.innerHTML.replace("{{team2}}", this.responseText);
+			};
+			request2.send();
+			t = t.replace("{{icon1}}", team1["icon"]);
+			t = t.replace("{{icon2}}", team2["icon"]);
+			t = t.replace("{{result}}", this.innerText);
+			shadow.innerHTML = t;
+		}
+		
+	</script>
+	<!--
 	<script>
 		var CsMatch = Object.create(HTMLElement.prototype);
 		var CsMatchTemplate = document.currentScript.ownerDocument.getElementsByTagName("TEMPLATE")[0].innerHTML;
@@ -66,4 +109,5 @@
 		
 		document.registerElement("cs-match", { prototype : CsMatch });
 	</script>
+	-->
 </html>
