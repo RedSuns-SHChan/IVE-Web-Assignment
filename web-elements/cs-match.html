@@ -77,7 +77,7 @@
 			t = t.replace("{{result}}", this.innerText);
 			shadow.innerHTML = t;
 		}
-		
+		document.registerElement("cs-match", { prototype : CsMatch });
 	</script>
 	<!--
 	<script>
