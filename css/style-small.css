@@ -38,7 +38,7 @@
 		padding-top: 180px;
 	}
 
-	header > #partners > A > img
+	header > #partners > cs-partner::shadow > img
 	{
 		display: block;
 		padding: 10px 0px 10px 0px;
