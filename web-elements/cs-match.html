@@ -43,12 +43,12 @@
 		
 		var getTeamData = function(shortname) {
 			var request = new XMLHttpRequest();
-			request.open("GET", "../imgs/teams/" + shortname + ".cfg", false);
+			request.open("GET", "https://" + window.location.href + "_imgs/teams/" + shortname + ".cfg", true);
 			request.send(null);
 			
 			return {
 				"fullname" : request.responseText,
-				"logo" : "../imgs/teams/" + shortname + ".png"
+				"logo" : "./imgs/teams/" + shortname + ".png"
 			};
 		};
 		
