@@ -168,19 +168,7 @@ main > section
 }
 
 /*-- Partners Logo Setup --*/
-#partners_logo_hyperx
-{
-	height: 40px;
-	transition: 400ms all;
-}
 
-#partners_logo_hyperx:hover
-{
-	filter: drop-shadow(0px 0px 12px rgb(255, 70, 0));
-	-ms-filter: drop-shadow(0px 0px 12px rgb(255, 70, 0));
-	-webkit-filter: drop-shadow(0px 0px 12px rgb(255, 70, 0));
-	transition: 400ms all;
-}
 
 #partners_logo_paysafecard
 {

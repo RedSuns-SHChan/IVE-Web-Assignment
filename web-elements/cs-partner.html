@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+	<template>
+	<style>
+	img
+	{
+		height: 40px;
+		transition: 400ms all;
+	}
+
+	img:hover
+	{
+		filter: drop-shadow(0px 0px 12px {{color}});
+		-ms-filter: drop-shadow(0px 0px 12px {{color}});
+		-webkit-filter: drop-shadow(0px 0px 12px {{color}});
+		transition: 400ms all;
+	}
+	</style>
+	<div class="container">
+		<A href="https://{{url}}/"><img src="./imgs/partners/{{name}}.png" alt="{{name}}" title="{{name}}"></A>
+	</div>
+	</template>
+	<script>
+		var CsPartner = Object.create(HTMLElement.prototype);
+		var CsPartnerTemplate = document.currentScriqwpt.ownerDocument.getElementsByTagName("TEMPLATE")[0].innerHTML;
+
+		var applyTemplate = function(t, item) {
+			return t.replace("{{" + item + "}}", this.getAttribute(item));
+		};
+		
+		CsPartner.createdCallback = function() {
+			var shadow = this.createShadowRoot();
+			CsPartnerTemplate = applyTemplate(CsPartnerTemplate, "color");
+			CsPartnerTemplate = applyTemplate(CsPartnerTemplate, "url");
+			CsPartnerTemplate = CsPartnerTemplate.replace("{{name}}", this.innerText);
+			shadow.innerHTML = CsPartnerTemplate;window.alert(CsPartnerTemplate);
+		};
+		
+		document.registerElement("cs-partner", { prototype : CsPartner });
+	</script>
+</html>

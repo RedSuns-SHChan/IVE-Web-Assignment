@@ -38,8 +38,8 @@
 	</div>
 	</template>
 	<script>
-		var template = document.currentScript.ownerDocument.getElementsByTagName("TEMPLATE")[0].innerHTML;
-		var proto = Object.create(HTMLElement.prototype);
+		var CsMatch = Object.create(HTMLElement.prototype);
+		var CsMatchTemplate = document.currentScript.ownerDocument.getElementsByTagName("TEMPLATE")[0].innerHTML;
 		
 		var getTeamData = function(shortname) {
 			var request = new XMLHttpRequest();
@@ -52,18 +52,18 @@
 			};
 		};
 		
-		proto.createdCallback = function() {
+		CsMatch.createdCallback = function() {
 			var shadow = this.createShadowRoot();
 			var team1 = getTeamData(this.getAttribute("team1"));
 			var team2 = getTeamData(this.getAttribute("team2"));
-			template = template.replace("{{team1}}", team1["fullname"]);
-			template = template.replace("{{icon1}}", team1["logo"]);
-			template = template.replace("{{team2}}", team2["fullname"]);
-			template = template.replace("{{icon2}}", team2["logo"]);
-			template = template.replace("{{result}}", this.innerText);
-			shadow.innerHTML = template;
+			CsMatchTemplate = CsMatchTemplate.replace("{{team1}}", team1["fullname"]);
+			CsMatchTemplate = CsMatchTemplate.replace("{{icon1}}", team1["logo"]);
+			CsMatchTemplate = CsMatchTemplate.replace("{{team2}}", team2["fullname"]);
+			CsMatchTemplate = CsMatchTemplate.replace("{{icon2}}", team2["logo"]);
+			CsMatchTemplate = CsMatchTemplate.replace("{{result}}", this.innerText);
+			shadow.innerHTML = CsMatchTemplate;
 		};
 		
-		document.registerElement("cs-match", { prototype:proto });
+		document.registerElement("cs-match", { prototype : CsMatch });
 	</script>
 </html>
