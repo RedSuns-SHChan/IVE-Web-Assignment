@@ -45,7 +45,7 @@
 			var request = new XMLHttpRequest();
 			request.open("GET", window.location.href + "imgs/teams/" + shortname + ".cfg", true);
 			request.send(null);
-			
+			console.log("Loaded team data: " + request.responseText);
 			return {
 				"fullname" : request.responseText,
 				"logo" : "./imgs/teams/" + shortname + ".png"
