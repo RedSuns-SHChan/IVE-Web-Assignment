@@ -45,13 +45,14 @@
 	</template>
 	
 	<script>
-		window.alert(window.location.pathname);
 		var CsMatch = Object.create(HTMLElement.prototype);
 		var CsMatchTemplate = document.currentScript.ownerDocument.getElementsByTagName("TEMPLATE")[0].innerHTML;
 		var getTeamData = function(shortname) {
+			var url = window.location.pathname;
+			url = url.substr(0, url.lastIndexOf(url.split("/").pop()));
 			return {
 				"shortname": shortname,
-				"url" : window.location.pathname + "/imgs/teams/" + shortname + ".cfg",
+				"url" : url + "imgs/teams/" + shortname + ".cfg",
 				"icon" : "./imgs/teams/" + shortname + ".png"
 			};
 		};
