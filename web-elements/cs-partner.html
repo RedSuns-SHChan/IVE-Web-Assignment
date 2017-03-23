@@ -40,8 +40,8 @@
 			var t = CsPartnerTemplate;
 			t = applyTemplate(this, t, "color");
 			t = applyTemplate(this, t, "url");
-			while (t.indexOf("{{name}}") != -1) {
-				t = t.replace("{{name}}", this.innerText);
+			while (t.lastIndexOf("{{name}}") != -1) {
+				t = t.replace("{{name}}", this.innerHTML);
 			}
 			var format = "png";
 			if (this.hasAttribute("format")) {
