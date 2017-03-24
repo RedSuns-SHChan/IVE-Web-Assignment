@@ -1,0 +1,26 @@
+<html>
+	<script src="../js/nu.js"></script>
+	<style>
+		nu-matches::shadow {
+			
+		}
+		nu-matches.demo {
+			color: #F00;
+		}
+	</style>
+	<template>
+		{{CLASS}} - {{TEXT}}
+	</template>
+<script>
+		nu.register("nu-matches", {
+			"attrs" : {
+				"class" : "demo"
+			},
+			"defaults" : {
+				"text" : "Nu framework"
+			},
+			"oncreate" : function() {
+			}
+		});
+</script>
+</html>

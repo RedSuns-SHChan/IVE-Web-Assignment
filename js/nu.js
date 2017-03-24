@@ -16,37 +16,57 @@ var nu = {
 		console.error("[" + name + "]" + msg);
 	},
 
-	register : function(name, settings) {
+	register : function(name, options) {
 		nu.log(name, "Started to register element: " + name);
 		var proto = Object.create(HTMLElement.prototype);
 		var templateTag = document.currentScript.ownerDocument.getElementsByTagName("template")[0];
 		var template = templateTag.innerHTML;
 
-		proto.createdCallback = function() {
-			var shadowRoot = this.createShadowRoot();
-			shadowRoot.innerHTML = template;
-			if ("defaults" in settings) {
-				Object.keys(settings["defaults"]).forEach(function (index, value) {
-					var key = "{{" + index.toUpperCase() + "}}";
-					while (shadowRoot.innerHTML.indexOf(key) != -1) {
-						nu.log(name, "Applying template [" + index + "], value : " +  settings["defaults"][index]);
-						shadowRoot.innerHTML = shadowRoot.innerHTML.replace(key, settings["defaults"][index]);
-					}
-				});
-			}
-			if ("oncreate" in settings) {
-				var customCallback = settings["oncreate"];
-				customCallback();
-			}
-		};
+		if (options != null) {
+			proto.createdCallback = function() {
+				var shadowRoot = this.createShadowRoot();
+				shadowRoot.innerHTML = template;
+				if ("attrs" in options) {
+					Object.keys(options["attrs"]).forEach(function(index, value) {
+						var data = options["attrs"][index];
+						var attr = document.createAttribute(index);
+						attr.value = data;
+						this.setAttributeNode(attr);
+					});
+				}
+				if ("defaults" in options) {
+					Object.keys(options["defaults"]).forEach(function (index, value) {
+						var key = "{{" + index.toUpperCase() + "}}";
+						while (shadowRoot.innerHTML.indexOf(key) != -1) {
+							nu.log(name, "Applying template [" + index + "], value : " +  options["defaults"][index]);
+							shadowRoot.innerHTML = shadowRoot.innerHTML.replace(key, options["defaults"][index]);
+						}
+					});
+				}
+				if ("oncreate" in options) {
+					var customCallback = options["oncreate"];
+					customCallback();
+				}
+			};
 
-		proto.attributeChangedCallback = function(name, oldValue, newValue) {
-			var shadow = this.createShadowRoot();
-			// Temporary solution, very buggy.
-			shadow.innerHTML = shadow.innerHTML.replace(oldValue, newValue);
-		};
-
+			proto.attributeChangedCallback = function(name, oldValue, newValue) {
+				var shadow = this.createShadowRoot();
+				// Temporary solution, very buggy.
+				var key = "{{" + name + "}}";
+				while (shadow.innerHTML.indexOf(key) != -1) {
+					shadow.innerHTML = shadow.innerHTML.replace(key, newValue);
+				}
+				while (shadow.innerHTML.indexOf(oldValue) != -1) {
+					shadow.innerHTML = shadow.innerHTML.replace(oldValue, newValue);
+				}
+				window.alert("Setted attribute " + name + ", value : " + this.getAttribute(name));
+			};
+		}
 		document.registerElement(name, {prototype:proto});
+	},
+
+	ajax : function(url, method) {
+
 	}
 
 };
