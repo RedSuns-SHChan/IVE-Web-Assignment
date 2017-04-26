@@ -14,11 +14,51 @@
 		<link rel="stylesheet" href="./css/about.css">
 	</head>
 	<body>
+		<img id="bg" src="./images/g2.png">
 		<header>
 			<site-header></site-header>
 		</header>
 		<main>
-			
+			<div id="container">
+				<img id="logo" src="./images/logo.png">
+				<div id="title">
+					<h1>ABOUT US</h1>
+					<h2>Get to know G2 E-Sports Fans Club</h2>
+				</div>
+				<div id="banner"></div>
+				<article>
+					<p>
+					G2 E-Sport Fans Club was created at 2017 and growing big in a few months.
+					Our purpose is to support this brand new franch super team and give them motivation to become the strongest team in the world.
+					And organize all the G2 fans together. Feel free to become one of us!
+					</p>
+					<p>
+					In this fans-club, we will held some meeting celebity for our members, also we will go to their competition location to support them.
+					If you want to get closer to G2 E-Sports CS:GO team, join us will be a good choice.
+					</p>
+					<p>
+					This fans club has worked collaboratively with top tier endemic and non-endemic brands, they give us huge support at money and the execution of the events.
+					RAZER, Kingston, G2A, all of them are our great sponsor. If you want to sponsor us, please contact us at below.
+					</p>
+				</article>
+				<form id="contact" method="POST">
+					<div>
+						<span>E-Mail</span>
+						<input type="email" name="email" placeholder="E-Mail(xxx@xxx.xxx)" required>
+						<br>
+						<span>Your name</span>
+						<input type="text" name="realname" placeholder="First name + Last name" required>
+						<br>
+						<span>Content</span>
+						<textarea name="content" placeholder="Content here..." rows="8" required></textarea>
+						<br>
+						<div id="ripple">
+							<paper-ripple></paper-ripple>
+							<input type="submit" value="SEND">
+						</div>
+					</div>
+				</form>
+			</div>
 		</main>
 		<footer>
 			<site-footer></site-footer>

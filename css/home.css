@@ -3,12 +3,22 @@ header {
 	background-image: url("../images/g2team.jpg");
 	background-size: cover;
 	background-position: center;
+	background-attachment: fixed;
+}
+
+#A_btn_knowmore
+{
+	position: relative;
+	display: inline-block;
+	margin: auto;
+	margin-top: 48px;
+	text-align: center;
+	left: 50%;
+	transform: translateX(-50%);
 }
 
 #btn_knowmore
 {
-	position: relative;
-	display: block;
 	text-align: center;
 	font-size: 1.2rem;
 	font-weight: bold;
@@ -21,8 +31,6 @@ header {
 	padding: 16px 32px 16px 32px;
 	cursor: pointer;
 	transition: 350ms all;
-	margin: auto;
-	margin-top: 48px;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-o-user-select: none;
@@ -31,15 +39,21 @@ header {
 
 #btn_knowmore:hover
 {
-	border: 3px solid #F91;
+	border: 3px solid #F60;
 	color: #FFF;
-	background-color: rgba(255, 160, 10, 0.3);
+	background-color: rgba(255, 100, 10, 0.3);
 	transition: 350ms all;
 }
 
 #btn_knowmore > paper-ripple
 {
-	color: #F91;
+	color: #F60;
+}
+
+#recent_matches
+{
+	padding-top: 56px;
+	padding-bottom: 56px;
 }
 
 #recent_matches .flex
@@ -77,6 +91,52 @@ header {
 #match_records > p
 {
 	margin: 24px;
+}
+
+#about_g2
+{
+	background-image: linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.6)), url("../images/g2_team_shox.jpg");
+	background-attachment: fixed;
+	background-size: cover;
+	background-position: bottom;
+}
+
+#about_g2 > .wrapper
+{
+	display: block;
+	width: 60%;
+	max-width: 1024px;
+	min-width: 320px;
+	margin: auto;
+	padding: 86px;
+}
+
+#about_g2 > .wrapper > div
+{
+	max-width: 55%;
+	margin: auto;
+	display: inline-block;
+	vertical-align: middle;
+	padding: 24px;
+}
+
+#about_g2 > .wrapper > .right > h1
+{
+	font-size: 3.2rem;
+	font-weight: lighter;
+	letter-spacing: 1px;
+	margin: 0px;
+}
+
+#about_g2 > .wrapper > .right > p
+{
+	font-size: 1.2rem;
+	line-height: 1.6rem;
+}
+
+#about_g2 img
+{
+	width: 210px;
 }
 
 @media screen and (max-width: 480px)
@@ -124,7 +184,7 @@ section > h1 + hr
 	height: 5px;
 	margin-bottom: 36px;
 	border: none;
-	background-color: #F91;
+	background-color: #F60;
 }
 
 section > article

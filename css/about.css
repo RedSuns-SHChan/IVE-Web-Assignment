@@ -1,0 +1,179 @@
+
+#bg
+{
+    position: fixed;
+    top: 0px;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translateX(-50%);
+    object-fit: cover;
+    filter: brightness(0.5) blur(7px);
+    overflow: hidden;
+    z-index: -1;
+}
+
+#container
+{
+	display: block;
+	position: relative;
+	color: #FFF;
+	width: 50%;
+	min-width: 360px;
+	max-width: 1024px;
+	background-color: #222;
+	margin: 200px auto 200px auto;
+	border-radius: 2px;
+}
+
+#logo
+{
+	width: 170px;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	top: -80px;
+	pointer-events: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+
+#title
+{
+	text-align: center;
+	padding: 80px;
+	padding-bottom: 12px;
+}
+
+#title > h1
+{
+	font-weight: normal;
+	font-size: 2.8rem;
+	letter-spacing: 3px;
+}
+
+#title > h2
+{
+	font-weight: lighter;
+	font-size: 1.3rem;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+#banner
+{
+	background-image: url("../images/aboutus_banner.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+
+	display: block;
+	width: 100%;
+	height: 300px;
+	margin: 0px;
+	padding: 0px;
+}
+
+article
+{
+	padding: 48px 24px 0px 24px;
+}
+
+article > p
+{
+	padding-bottom: 16px;
+	padding-left: 48px;
+	padding-right: 48px;
+	font-size: 1.1rem;
+	line-height: 1.8rem;
+	font-weight: lighter;
+}
+
+#contact
+{
+	display: block;
+	margin: auto;
+	padding: 72px;
+	padding-top: 12px;
+}
+
+span
+{
+	display: block;
+	padding: 0px;
+	margin-top: 24px;
+	font-size: 1.5rem;
+	text-transform: uppercase;
+	color: #F60;
+	font-weight: lighter;
+}
+
+input,
+textarea
+{
+	background-color: #333;
+	color: #EFEFEF;
+	margin: 0px;
+	border-radius: 2px;
+	padding: 8px;
+	font-weight: lighter;
+	outline: none;
+	border: none;
+	width: 100%;
+	height: 36px;
+	font-size: 1.1rem;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	transition: 600ms all;
+}
+
+textarea
+{
+	resize: none;
+	height: initial;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus
+{
+	box-shadow: 0px 0px 8px 0px #F60;
+	transition: 600ms all;
+}
+
+
+form > div
+{
+	width: 100%;
+	position: relative;
+}
+
+#ripple > input[type="submit"]
+{
+	position: relative;
+	cursor: pointer;
+	background-color: #F60;
+	color: #FFF;
+	font-weight: bold;
+	width: 100%;
+	height: initial;
+	padding: 12px;
+	margin: 0px;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+#ripple
+{
+	margin-top: 12px;
+	position: relative;
+}
+
+#ripple > paper-ripple
+{
+	z-index: 2;
+}

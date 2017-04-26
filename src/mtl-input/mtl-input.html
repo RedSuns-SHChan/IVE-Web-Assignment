@@ -8,13 +8,13 @@
 		<style>
 			:host
 			{
-				--mtl-input-color: #F91;
+				--mtl-input-color: #F60;
 				--mtl-input-text-color: #000;
 			}
 			
 			#container
 			{
-				margin: 8px;
+				margin: 12px;
 				font-family: "Roboto", Arial;
 				position: relative;
 				display: block;
@@ -54,7 +54,7 @@
 			input:focus + label,
 			input[empty="false"] + label
 			{
-				transform: scale(0.5) translateY(-250%);
+				transform: scale(0.7) translateY(-200%);
 				color: var(--mtl-input-color);
 			}
 			
@@ -101,9 +101,9 @@
 				display: none;
 				position: absolute;
 				bottom: -14px;
-				left: 0px;
+				right: 0px;
 				transition: 300ms all ease-out;
-				font-size: 10px;
+				font-size: 13px;
 			}
 		</style>
 		<div id="container">
@@ -191,18 +191,32 @@
 				this.value = input.value;
 				if (input.value.length > 0) {
 					this.empty = "false";
-					if (this.pattern.length > 0) {
-						if (this.value.match(this.pattern)) {
+					if (this.type == "email") {
+						if (this.value.match("^[A-Za-z0-9]+[\@][A-Za-z0-9]+[.][a-z]{2,4}$")) {
 							this.error = "false";
 						} else {
 							this.error = "true";
 							if (this.customError.length == 0) {
-								this.msg = "The pattern is not matched: " + this.pattern;
+								this.msg = "Please input a correct e-mail address.";
 							} else {
 								this.msg = this.customError;
 							}
 						}
+					} else {
+						if (this.pattern.length > 0) {
+							if (this.value.match("^" + this.pattern + "$")) {
+								this.error = "false";
+							} else {
+								this.error = "true";
+								if (this.customError.length == 0) {
+									this.msg = "The pattern is not matched: " + this.pattern;
+								} else {
+									this.msg = this.customError;
+								}
+							}
+						}
 					}
+					
 				} else {
 					this.empty = "true";
 				}

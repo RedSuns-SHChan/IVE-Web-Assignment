@@ -71,21 +71,21 @@
 			
 			#header_btn_login:hover
 			{
-				border: 2px #F91 solid;
-				color: #F91;
+				border: 2px #F60 solid;
+				color: #F60;
 				transition: 300ms all;
 			}
 			
 			#header_btn_login:active
 			{
-				border: 2px #F91 solid;
+				border: 2px #F60 solid;
 				color: #FFF;
 				transition: 300ms all;
 			}
 			
 			#header_btn_login > paper-ripple
 			{
-				color: #F91;
+				color: #F60;
 			}
 			
 			#menu_icon
@@ -93,11 +93,10 @@
 				display: none;
 				transition: 200ms all ease-out;
 			}
-			
-			#menu_icon:active
+
+			nav-item[link="login.html"]
 			{
-				background: rgba(255, 150, 10, 0.6);
-				transition: 200ms all ease-out;
+				display: none;
 			}
 			
 			@media screen and (min-width: 901px)
@@ -125,13 +124,18 @@
 					position: fixed;
 					top: 0px;
 					left: 0px;
-					width: 100%;
+					width: 100vw;
 					background-color: #202020;
 					box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.5);
 					padding: 18px;
 					padding-bottom: 0px;
 				}
 				
+				#logo
+				{
+					display: inline-block;
+				}
+
 				#logo > div
 				{
 					padding: 8px 0px 8px 0px;
@@ -139,7 +143,10 @@
 				
 				#header_btn_login
 				{
-					display: none;
+					position: absolute;
+					top: 24px;
+					right: 64px;
+					padding: 8px 12px 8px 12px;
 				}
 				
 				nav
@@ -149,7 +156,12 @@
 			}
 			
 			@media screen and (max-width: 480px)
-			{	
+			{
+
+				#header_btn_login
+				{
+					display: none;
+				}
 				#container
 				{
 					padding: 0px;
@@ -163,7 +175,7 @@
 					position: absolute;
 					right: 0px;
 					top: 0px;
-					padding: 20px;
+					padding: 17px;
 					cursor: pointer;
 				}
 				
@@ -184,6 +196,11 @@
 					display: block;
 					--nav-item-hori-padding: 45vw;
 				}
+
+				nav-item[link="login.html"]
+				{
+					display: block;
+				}
 			}
 		</style>
 		<div id="container">
@@ -200,8 +217,9 @@
 				<nav-item link="events.html">EVENTS</nav-item>
 				<nav-item link="shop.html">SHOP</nav-item>
 				<nav-item link="about.html">ABOUT</nav-item>
+				<nav-item link="login.html">LOGIN</nav-item>
 			</nav>
-			<div id="menu_icon" on-click="onClickMenu">&#9776;</div>
+			<div id="menu_icon" on-click="onClickMenu"><paper-ripple></paper-ripple>&#9776;</div>
 		</div>
 	</template>
 	<script>

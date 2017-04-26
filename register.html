@@ -19,18 +19,24 @@
 		<main>
 			<div id="register_panel">
 				<h1>REGISTER</h1>
-				<mtl-input label="User Name" name="username" pattern="[A-Za-z0-9]"></mtl-input>
-				<mtl-input label="Password" name="password" type="password" pattern="[A-Za-z0-9]"></mtl-input>
-				<mtl-input label="Confirm Password" name="password_confirm" type="password" pattern="[A-Za-z0-9]"></mtl-input>
-				<mtl-input label="Name" name="realname" pattern="[A-Za-z]"></mtl-input>
+				<mtl-input label="User Name" name="username" pattern="[A-Za-z0-9]{6,8}" custom-error="Please enter user name in 6-8 characters or digits."></mtl-input>
+				<mtl-input label="Password" name="password" type="password" pattern="[A-Za-z0-9]{8,12}" custom-error="Please enter the password in 8-12 characters or digits."></mtl-input>
+				<mtl-input label="Confirm Password" name="password_confirm" type="password" pattern="[A-Za-z0-9]{8,12}" custom-error="Please enter the password in 8-12 characters or digits."></mtl-input>
+				<mtl-input label="Name" name="realname" pattern="[A-Z][A-Za-z]*" custom-error="Your name should start with capital letter."></mtl-input>
 				<mtl-input label="E-Mail" name="email" type="email"></mtl-input>
-				<mtl-input label="Phone" name="phone" pattern="[0-9]"></mtl-input>
-				<mtl-submit color="#F91" onclick="validate()">REGISTER</mtl-submit>
+				<mtl-input label="Phone" name="phone" pattern="[2396][0-9]{7}" custom-error="Please enter an 8-digits Hong Kong phone number."></mtl-input>
+				<mtl-submit color="#F60" onclick="validate()">REGISTER</mtl-submit>
 			</div>
 		</main>
 	</body>
 	<script>
 		function validate() {
+			var pw1 = document.querySelector("mtl-input[name='password']");
+			var pw2 = document.querySelector("mtl-input[name='password_confirm']");
+
+			if (pw1.value != pw2.value) {
+				show_snackbar("Two password are not the same!");
+			}
 		}
 	</script>
 </html>

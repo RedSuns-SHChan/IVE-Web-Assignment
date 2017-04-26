@@ -28,7 +28,7 @@
 				position: relative;
 				background-color: #101010;
 				height: 50px;
-				border-top: 1px solid #F91;
+				border-top: 1px solid #F60;
 			}
 
 			#lower > div
@@ -60,14 +60,19 @@
 				text-align: center;
 			}
 
-			#sponsors > .sponsor
+			#sponsors > A > img
 			{
 				display: inline-block;
-				width: 100px;
-				height: 30px;
-				background-color: rgba(255, 150, 10, 0.2);
-				border: 1px solid rgba(255, 150, 10, 0.7);
+				width: 150px;
 				margin: 0px 12px 0px 12px;
+				filter: brightness(0.5);
+				transition: all 300ms;
+			}
+
+			#sponsors > A > img:hover
+			{
+				filter: brightness(0.8);
+				transition: all 300ms;
 			}
 
 			#related_links
@@ -111,7 +116,7 @@
 
 			social-icon:hover
 			{
-				--social-icon-color: #F91;
+				--social-icon-color: #F60;
 			}
 
 		</style>
@@ -120,10 +125,10 @@
 				<div class="wrapper">
 					<div id="sponsors">
 						<p>Sponsored By</p>
-						<div class="sponsor"></div>
-						<div class="sponsor"></div>
-						<div class="sponsor"></div>
-						<div class="sponsor"></div>
+						<A href="#"><img src="../../images/boomeo.png"></A>
+						<A href="#"><img src="../../images/kinguin.png"></A>
+						<A href="#"><img src="../../images/hyperx.png"></A>
+						<A href="#"><img src="../../images/paysafecard.png"></A>
 					</div>
 					<p>Follow Us</p>
 					<div id="icons">

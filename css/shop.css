@@ -1,0 +1,28 @@
+
+header
+{
+	height: 130px;
+}
+
+#banner
+{
+	background-color: #F60;
+	color: #FFF;
+}
+
+#banner > #title
+{
+	padding: 48px 64px 48px 64px;
+}
+
+#banner > #title > *
+{
+	margin: 0px;
+	font-weight: lighter;
+	text-transform: uppercase;
+}
+
+#banner > #title > h1
+{
+	font-size: 4.2rem;
+}
