@@ -106,9 +106,9 @@
 			
 		</style>
 		<div id="container">
-			<p><img src="/images/teams/{{team1}}.png"><span class="teamname">{{team1}}</span> <span id="team1mark">{{score1}}</span> : <span id="team2mark">{{score2}}</span> <span class="teamname">{{team2}}</span><img src="/images/teams/{{team2}}.png"></p>
-			<iron-ajax auto url="/images/teams/{{team1}}.cfg" handle-as="text" on-response="onTeam1NameLoaded"></iron-ajax>
-			<iron-ajax auto url="/images/teams/{{team2}}.cfg" handle-as="text" on-response="onTeam2NameLoaded"></iron-ajax>
+			<p><img src="../../images/teams/{{team1}}.png"><span class="teamname">{{team1}}</span> <span id="team1mark">{{score1}}</span> : <span id="team2mark">{{score2}}</span> <span class="teamname">{{team2}}</span><img src="../../images/teams/{{team2}}.png"></p>
+			<iron-ajax auto url="../../images/teams/{{team1}}.cfg" handle-as="text" on-response="onTeam1NameLoaded"></iron-ajax>
+			<iron-ajax auto url="../../images/teams/{{team2}}.cfg" handle-as="text" on-response="onTeam2NameLoaded"></iron-ajax>
 		</div>
 	</template>
 	<script>
