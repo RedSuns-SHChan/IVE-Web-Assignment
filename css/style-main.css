@@ -1,0 +1,175 @@
+/**
+ * Body
+ */
+body
+{
+	margin: 0px;
+	padding: 0px;
+	font-family: "Roboto", "Open Sans", Arial;
+	background-color: #070707;
+	color: #FFFFFF;
+	text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.8);
+	overflow-x: hidden;
+}
+
+::selection
+{
+	background-color: rgba(255, 80, 0, 0.4);
+	color: #DDD;
+	text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+::-moz-selection
+{
+	background-color: rgba(255, 80, 0, 0.4);
+	color: #DDD;
+	text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/**
+ * Header
+ */
+header
+{
+	display: block;
+	background: url("../imgs/g2team.jpg");
+	background-size: cover;
+	background-position: center;
+	height: 100vh;
+	width: 100vw;
+	user-select: none;
+	-ms-user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	cursor: default;
+}
+
+header > h1 > img
+{
+	width: 180px;
+	vertical-align: middle;
+	filter: drop-shadow(0px 0px 4px rgb(255, 70, 0));
+	-ms-filter: drop-shadow(0px 0px 4px rgb(255, 70, 0));
+	-webkit-filter: drop-shadow(0px 0px 4px rgb(255, 70, 0));
+	transition: all 500ms;
+}
+
+header > h1 > img:hover
+{
+	filter: drop-shadow(0px 0px 12px rgb(255, 120, 20));
+	-ms-filter: drop-shadow(0px 0px 12px rgb(255, 120, 20));
+	-webkit-filter: drop-shadow(0px 0px 12px rgb(255, 120, 20));
+	transition: all 500ms;
+}
+
+/**
+ * Website title
+ */
+header > h1
+{
+	text-align: center;
+	font-weight: lighter;
+	font-size: 4.5rem;
+	margin: 35vh 4vw 1vw 4vw;
+	text-shadow: 0px 0px 12px rgb(255, 70, 0);
+}
+
+header > h2
+{
+	text-align: center;
+	font-weight: normal;
+	font-size: 1.3rem;
+	margin-bottom: 5vw;
+	letter-spacing: 1px;
+	word-spacing: 2px;
+}
+
+/**
+ * Navigation bar
+ */
+header > nav
+{
+	list-style: none;
+	height: 70px;
+	transition: 1s ease-in-out;
+	will-change: height opacity;
+}
+
+/**
+ * Navigation bar item
+ */
+header > nav > li
+{
+	display: table-cell;
+	padding: 35px 25px 10px 25px;
+}
+
+/**
+ * The link that inside navigation bar item
+ */
+header > nav > li > a
+{
+	color: #FFFFFF;
+	text-decoration: none;
+	padding: 8px 10px 8px 10px;
+	transition: all 300ms;
+}
+
+header > nav > li > a:hover
+{
+	transition: all 300ms;
+	text-shadow:0px 0px 20px #FF5500,
+				2px 0px 20px #FF5500,
+				-2px 0px 20px #FF5500,
+				0px 2px 20px #FF5500,
+				0px -2px 20px #FF5500;
+}
+
+header > nav > li a.selected
+{
+	border-bottom: 3px solid #FF5500;
+}
+
+header > nav > li > a:active
+{
+	background-color: rgba(255, 70, 0, 0.4);
+}
+
+header > #partners
+{
+	position: relative;
+	left: 50vw;
+	transform: translate(-50%, -40%);
+	display: table-cell;
+	padding-top: 5px;
+}
+
+header > #partners > cs-partner
+{
+	display: inline-block;
+	padding: 50px 30px 50px 30px;
+	vertical-align: middle;
+}
+
+main
+{
+	width: 100vw;
+}
+
+main > section
+{
+	width: 100%;
+	max-width: 900px;
+	min-width: 500px;
+	margin: auto;
+	padding: 25px;
+}
+
+main > section > h1
+{
+	color: #FF5500;
+	font-weight: 400;
+	font-size: 2.4rem;
+	letter-spacing: 1px;
+	text-shadow: 0px 0px 7px #FF5500;
+}

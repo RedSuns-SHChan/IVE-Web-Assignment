@@ -1,0 +1,62 @@
+/**
+ * For Phone Vertical Mode
+ */
+
+@media (max-width: 711px)
+{
+	header
+	{
+		height: initial;
+	}
+
+	header > nav
+	{
+		position: relative;
+		left: 50%;
+		transform: translate(-50%, 0%);
+		display: inline-block;
+		margin: auto;
+	}
+
+	header > nav > li
+	{
+		display: table-cell;
+		padding: 35px 1.5vw 10px 1.5vw;
+	}
+
+	header > h1 > img
+	{
+		display: block;
+		position: relative;
+		left: 50%;
+		transform: translate(-50%, 0%);
+		text-align: center;
+	}
+
+	header > #partners
+	{
+		padding-top: 180px;
+	}
+
+	header > #partners > cs-partner::shadow > img
+	{
+		display: block;
+		padding: 10px 0px 10px 0px;
+	}
+}
+
+/**
+ * For Phone Horizontal Mode
+ */
+@media (max-height: 639px)
+{
+	header
+	{
+		height: initial;
+	}
+	header > h1
+	{
+		margin-top: 15vh;
+		font-size: 3.5rem;
+	}
+}

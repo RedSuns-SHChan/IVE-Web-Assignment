@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+	<template>
+	<style>
+	div.container
+	{
+		display: block;
+		margin: 20px;
+		background-color: #161616;
+		padding: 10px 18px 10px 18px;
+	}
+	
+	span.teamname
+	{
+		vertical-align: middle;
+		font-size: 1rem;
+		color: #FFFFFF;
+		line-height: 2rem;
+	}
+	
+	img
+	{
+		vertical-align: middle;
+		height: 2.5rem;
+		padding: 0px 10px 0px 10px;
+	}
+	
+	span#result
+	{
+		vertical-align: middle;
+		font-size: 1.6rem;
+		line-height: 2rem;
+		font-weight: bold;
+		letter-spacing: 10px;
+		margin: 0px 10px 0px 10px;
+	}
+	</style>
+		<div class="container">
+			<img src="{{icon1}}"/>
+			<span class="teamname">{{team1}}</span>
+			<span id="result">{{result}}</span>
+			<span class="teamname">{{team2}}</span>
+			<img src="{{icon2}}"/>
+		</div>
+	</template>
+	
+	<script>
+		var CsMatch = Object.create(HTMLElement.prototype);
+		var CsMatchTemplate = document.currentScript.ownerDocument.getElementsByTagName("TEMPLATE")[0].innerHTML;
+		var getTeamData = function(shortname) {
+			var url = window.location.pathname;
+			url = url.substr(0, url.lastIndexOf(url.split("/").pop()));
+			return {
+				"shortname": shortname,
+				"url" : url + "imgs/teams/" + shortname + ".cfg",
+				"icon" : "./imgs/teams/" + shortname + ".png"
+			};
+		};
+		
+		CsMatch.createdCallback = function() {
+			var shadow = this.createShadowRoot();
+			var team1 = getTeamData(this.getAttribute("team1"));
+			var team2 = getTeamData(this.getAttribute("team2"));
+			var t = CsMatchTemplate;
+			
+			// Get Team 1 Full Name
+			var request1 = new XMLHttpRequest();
+			request1.open("GET", team1["url"], true);
+			request1.responseType = "text";
+			request1.onload = function() {
+				console.log("Response recieved. Status = " + this.status);
+				if (this.status !== 200) {
+					console.error("[cs-match] Unable to load the full name of the team " + team1["shortname"] + "! Using short name instead of!");
+					shadow.innerHTML = shadow.innerHTML.replace("{{team1}}", team1["shortname"]);
+				} else {
+					console.log("[cs-match] Loaded full name of team " + team1["shortname"] + " from url('" + team1["url"] + "')");
+					shadow.innerHTML = shadow.innerHTML.replace("{{team1}}", this.responseText);
+				}
+			};
+			request1.send();
+			
+			// Get Team 2 Full Name
+			var request2 = new XMLHttpRequest();
+			request2.open("GET", team2["url"], true);
+			request2.responseType = "text";
+			request2.onload = function() {
+				console.log("Response recieved. Status = " + this.status);
+				if (this.status !== 200) {
+					console.error("[cs-match] Unable to load the full name of the team " + team2["shortname"] + "! Using short name instead of!");
+					shadow.innerHTML = shadow.innerHTML.replace("{{team2}}", team2["shortname"]);
+				} else {
+					console.log("[cs-match] Loaded full name of team " + team2["shortname"] + " from url('" + team2["url"] + "')");
+					shadow.innerHTML = shadow.innerHTML.replace("{{team2}}", this.responseText);
+				}
+			};
+			request2.send();
+			t = t.replace("{{icon1}}", team1["icon"]);
+			t = t.replace("{{icon2}}", team2["icon"]);
+			t = t.replace("{{result}}", this.innerText);
+			shadow.innerHTML = t;
+		};
+		document.registerElement("cs-match", { prototype : CsMatch });
+	</script>
+</html>
