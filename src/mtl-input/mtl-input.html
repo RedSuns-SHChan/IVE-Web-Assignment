@@ -1,0 +1,235 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/font-roboto/roboto.html">
+<link rel="import" href="../../bower_components/iron-form-element-behavior/iron-form-element-behavior.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+
+<dom-module id="mtl-input">
+	<template>
+		<style>
+			:host
+			{
+				--mtl-input-color: #F91;
+				--mtl-input-text-color: #000;
+			}
+			
+			#container
+			{
+				margin: 8px;
+				font-family: "Roboto", Arial;
+				position: relative;
+				display: block;
+				margin: 24px 8px 24px 8px;
+			}
+			
+			input
+			{
+				width: [[width]];
+				height: [[height]];
+				border: none;
+				outline: none;
+				background-color: rgba(0, 0, 0, 0);
+				border-bottom: 1px solid #AAA;
+				color: var(--mtl-input-color);
+				text-shadow: 0px 0px 0px var(--mtl-input-text-color);
+				-webkit-text-fill-color: transparent;
+				font-size: 18px;
+				padding: 4px 0px 4px 0px;
+			}
+			
+			label
+			{
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+				pointer-events: none;
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-o-user-select: none;
+				user-select: none;
+				color: #AAA;
+				transform-origin: top left;
+				transition: 300ms all ease-out;
+			}
+			
+			input:focus + label,
+			input[empty="false"] + label
+			{
+				transform: scale(0.5) translateY(-250%);
+				color: var(--mtl-input-color);
+			}
+			
+			hr
+			{
+				position: relative;
+				top: -2px;
+				margin: auto;
+				border: none;
+				outline: none;
+				height: 2px;
+				width: 100%;
+				background-color: var(--mtl-input-color);
+				transition: 300ms all ease-out;
+				transform-origin: center;
+			}
+			
+			input:not(:focus) + label + hr
+			{
+				max-width: 0%;
+				transition: 300ms all ease-out;
+			}
+			
+			input:focus + label + hr
+			{
+				max-width: 100%;
+				transition: 300ms all ease-out;
+			}
+			
+			input[error="true"] {
+				color: #F00;
+			}
+			
+			input[error="true"] + label {
+				color: #F00;
+			}
+			
+			input[error="true"] + label + hr {
+				background-color: #F00;
+			}
+			
+			#msg {
+				color: #F00;
+				display: none;
+				position: absolute;
+				bottom: -14px;
+				left: 0px;
+				transition: 300ms all ease-out;
+				font-size: 10px;
+			}
+		</style>
+		<div id="container">
+			<input name="{{name}}" type="{{type}}" pattern="{{pattern}}" value="{{value}}" on-input="updateValue">
+			<label>{{label}}</label>
+			<hr>
+			<span id="msg">{{msg}}</span>
+		</div>
+	</template>
+	<script>
+		class MtlInput extends Polymer.Element {
+			
+			static get is() { return "mtl-input"; }
+			
+			static get properties() {
+				return {
+					width: {
+						type: String,
+						value: ""
+					},
+					height: {
+						type: String,
+						value: ""
+					},
+					name : {
+						type: String,
+						value: ""
+					},
+					label : {
+						type: String,
+						value: ""
+					},
+					pattern : {
+						type: String,
+						value: ""
+					},
+					value : {
+						type: String,
+						value: ""
+					},
+					type : {
+						type: String,
+						value: ""
+					},
+					error : {
+						type: String,
+						observer : "_errorOccuredListener"
+					},
+					empty : {
+						type: String,
+						observer : "_textEmptyListener"
+					},
+					msg : {
+						type: String
+					},
+					customError : {
+						type: String
+					}
+				};
+			}
+			
+			constructor() {
+				super();
+				this.width = "100%";
+				this.height = "24px";
+				this.name = "";
+				this.label = "Label";
+				this.pattern = "";
+				this.value = "";
+				this.type = "text";
+				this.empty = "true";
+				this.error = "false";
+				this.msg = "";
+				this.customError = "";
+			}
+			
+			ready() {
+				super.ready();
+				var input = Polymer.dom(this.root).querySelector("input");
+				this.value = input.value;
+			}
+			
+			updateValue(e) {
+				var input = Polymer.dom(this.root).querySelector("input");
+				this.value = input.value;
+				if (input.value.length > 0) {
+					this.empty = "false";
+					if (this.pattern.length > 0) {
+						if (this.value.match(this.pattern)) {
+							this.error = "false";
+						} else {
+							this.error = "true";
+							if (this.customError.length == 0) {
+								this.msg = "The pattern is not matched: " + this.pattern;
+							} else {
+								this.msg = this.customError;
+							}
+						}
+					}
+				} else {
+					this.empty = "true";
+				}
+			}
+			
+			_errorOccuredListener(value, oldVal) {
+				var input = Polymer.dom(this.root).querySelector("input");
+				var msg = Polymer.dom(this.root).querySelector("#msg");
+				input.setAttribute("error", value);
+				if (value == "true") {
+					msg.style.display = "block";
+				} else {
+					msg.style.display = "none";
+				}
+			}
+			
+			_textEmptyListener(value, oldVal) {
+				var input = Polymer.dom(this.root).querySelector("input");
+				input.setAttribute("empty", value);
+				if (value == "true") {
+					this.error = "false";
+					this.msg = "Please fill this field before submit";
+				}
+			}
+			
+		}
+		
+		customElements.define(MtlInput.is, MtlInput);
+	</script>
+</dom-module>

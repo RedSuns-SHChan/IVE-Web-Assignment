@@ -1,0 +1,33 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/font-roboto/roboto.html">
+<link rel="import" href="../../bower_components/paper-ripple/paper-ripple.html">
+<link rel="import" href="../../match-record.html">
+
+<dom-module id="matches-list">
+	<template>
+		<style>
+		</style>
+	</template>
+	<script>
+		class MatchesList extends Polymer.Element {
+			
+			static get is() { return "matches-list"; }
+			
+			static get properties() {
+				return {
+					
+					link : {
+						type: String
+					}
+					
+				}
+			}
+			
+			ready() {
+				
+			}
+			
+		}
+		customElements.define(MatchesList.is, MatchesList);
+	</script>
+</dom-module>

@@ -1,0 +1,19 @@
+{
+    "name": "Web Assignment v2",
+    "authors": [
+        "redsunsshchan <redsunsshchan@gmail.com>"
+    ],
+    "description": "G2 Esports Fan Club Page",
+    "main": "index.html",
+    "moduleType": [],
+    "keywords": [
+    "HTML"
+    ],
+    "dependencies" : {
+        "polymer" : "Polymer/polymer#^2.0.0-rc.3",
+        "webcomponentsjs" : "webcomponents/webcomponentsjs#^1.0.0-rc.7"
+    },
+    "license": "MIT",
+    "homepage": "",
+    "private": true
+}

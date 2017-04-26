@@ -1,0 +1,162 @@
+
+header {
+	background-image: url("../images/g2team.jpg");
+	background-size: cover;
+	background-position: center;
+}
+
+#btn_knowmore
+{
+	position: relative;
+	display: block;
+	text-align: center;
+	font-size: 1.2rem;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #FFF;
+	outline: none;
+	border: 3px solid #FFF;
+	border-radius: 2px;
+	background-color: rgba(0, 0, 0, 0);
+	padding: 16px 32px 16px 32px;
+	cursor: pointer;
+	transition: 350ms all;
+	margin: auto;
+	margin-top: 48px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+
+#btn_knowmore:hover
+{
+	border: 3px solid #F91;
+	color: #FFF;
+	background-color: rgba(255, 160, 10, 0.3);
+	transition: 350ms all;
+}
+
+#btn_knowmore > paper-ripple
+{
+	color: #F91;
+}
+
+#recent_matches .flex
+{
+	-webkit-justify-content: center;
+	-moz-justify-content: center;
+	-o-justify-content: center;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+#latest_vod
+{
+	position: relative;
+}
+
+#latest_vod > p
+{
+	margin: 24px;
+}
+
+#latest_vod > iframe
+{
+	width: 480px;
+	height: 270px;
+	margin-left: 24px;
+}
+
+#match_records
+{
+	position: relative;
+	display: block;
+}
+
+#match_records > p
+{
+	margin: 24px;
+}
+
+@media screen and (max-width: 480px)
+{
+	#match_records
+	{
+		width: 100%;
+	}
+	
+	#latest_vod
+	{
+		width: 100%;
+	}
+	
+	#latest_vod > iframe
+	{
+		width: 90%;
+	}
+}
+
+
+section
+{
+	position: relative;
+	display: block;
+	color: #FFF;
+}
+
+section > h1
+{
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: normal;
+	letter-spacing: 1px;
+	margin: auto;
+	padding: 36px;
+	padding-bottom: 12px;
+	font-size: 2.4em;
+	text-shadow: 0px 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+section > h1 + hr
+{
+	width: 100px;
+	height: 5px;
+	margin-bottom: 36px;
+	border: none;
+	background-color: #F91;
+}
+
+section > article
+{
+	padding-bottom: 24px;
+}
+
+header > div
+{
+	max-width: 1024px;
+	margin: auto;
+	padding: 10vh 0 10vh 0;
+}
+
+header > div > h1
+{
+	color: #FFF;
+	font-size: 2.5em;
+	text-align: center;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.8);
+	letter-spacing: 2px;
+}
+
+header > div > h2
+{
+	font-size: 1.2em;
+	color: #FFF;
+	text-align: center;
+	font-weight: normal;
+	text-transform: uppercase;
+	text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.8);
+	letter-spacing: 2px;
+}

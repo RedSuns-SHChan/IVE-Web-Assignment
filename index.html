@@ -1,74 +1,45 @@
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
 	<head>
-		<!--
-			Please try to follow material design guidelines when designing the components.
-			@see https://material.io/guidelines/
-		-->
 		<meta charset="UTF-8">
-		<!-- Disable zooming -->
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-
-		<title>G2 Esports Fans Club</title>
-		<meta name="description" content="The fans club page of the famous CS:GO team G2.">
-		<meta name="keywords" content="dream team,french,france,CSGO,G2,Esports,G2 Esports,Counter-Strike,CS:GO,Global,Offensive,Global Offensive,Counter,Strike">
-		<meta name="author" content="Chan Sze Ho,Tsim Tat Yau">
-		<meta name="generator" content="Visual Studio Code">
-		<link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
-
-		<link rel="stylesheet" type="text/css" href="./css/style-main.css">
-		<link rel="stylesheet" type="text/css" href="./css/style-small.css">
-	
-		<link rel="import" href="./web-elements/cs-match.html">
+		<title>Gamers2 E-Sports Fans Club</title>
+		<script src="./bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+		<link rel="import" href="./src/imports.html">
+		<link rel="stylesheet" href="./css/common.css">
+		<link rel="stylesheet" href="./css/home.css">
 	</head>
 	<body>
 		<header>
-			<nav>
-				<li><a class="selected" href="index.html">HOME</a></li>
-				<li><a href="#">NEWS</a></li>
-				<li><a href="#">PARTNERS</a></li>
-				<li><a href="#">CONTACT</a></li>
-			</nav>
-			<h1><img src="./imgs/logo.svg" alt="G2 e-sports" title="G2 E-Sports"><span style="color: #FF4A00; font-weight: 600;">G2</span>E-SPORTS</h1>
-			<h2>A FRENCH CSGO SUPERTEAM POWERED BY KINGUIN</h2>
-			<div id="partners">
-				<A href="https://www.hyperxgaming.com/"><img id="partners_logo_hyperx" src="./imgs/partners/hyperx.png" alt="HyperX" title="HyperX"></A>
-				<A href="https://www.paysafecard.com/"><img id="partners_logo_paysafecard" src="./imgs/partners/paysafecard.svg" alt="PaySafeCard" title="PaySafeCard"></A>
-				<A href="https://www.razerzone.com/"><img id="partners_logo_razer" src="./imgs/partners/razer.png" alt="RAZER" title="RAZER"></A>
+			<site-header></site-header>
+			<div>
+				<h1>BIGGEST G2 CSGO TEAM FANS CLUB</h1>
+				<h2>WHY WE LOVE THEM?</h2>
+				<A href="about.html"><button id="btn_knowmore"><paper-ripple></paper-ripple>KNOW MORE</button></A>
 			</div>
 		</header>
 		<main>
-			<section id="recent_matchup">
-				<h1>RECENT MATCHUP</h1>
-				<div id="match_results">
-					<div class="match_result">
-						<span class="teamname">G2 E-Sports</span>
-						<img src="./imgs/teams/g2.png"/>
-						<span class="match_lose">0 : 1</span>
-						<img src="./imgs/teams/fntc.png"/>
-						<span class="teamname">Fnatic</span>
+			<section id="recent_matches">
+				<h1>Current Match Up</h1>
+				<hr>
+				<article>
+					<div class="flex">
+						<div id="latest_vod">
+						<p>Latest VoD</p>
+						<iframe src="https://www.youtube.com/embed/bL-6jRZQik8" frameborder="0" allowfullscreen></iframe>
+						</div>
+						<div id="match_records">
+							<p>Latest Result</p>
+							<match-record team1="g2" team2="astrl" score1="2" score2="0"></match-record>
+							<match-record team1="g2" team2="navi" score1="1" score2="1"></match-record>
+							<match-record team1="g2" team2="godse" score1="2" score2="0"></match-record>
+							<match-record team1="g2" team2="faze" score1="1" score2="2"></match-record>
+						</div>
 					</div>
-					<div class="match_result">
-						<span class="teamname">G2 E-Sports</span>
-						<img src="./imgs/teams/g2.png"/>
-						<span class="match_lose">0 : 2</span>
-						<img src="./imgs/teams/fntc.png"/>
-						<span class="teamname">Fnatic</span>
-					</div>
-					<div class="match_result">
-						<span class="teamname">G2 E-Sports</span>
-						<img src="./imgs/teams/g2.png"/>
-						<span class="match_win">2 : 0</span>
-						<img src="./imgs/teams/envy.png"/>
-						<span class="teamname">EnVyUs</span>
-					</div>
-				</div>
-			</section>
-			<section>
-				<h1></h1>
+				</article>
 			</section>
 		</main>
 		<footer>
+			<site-footer></site-footer>
 		</footer>
 	</body>
 </html>

@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>LOGIN - Gamers2 E-Sports Fans Club</title>
+		<script src="./bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+		<link rel="import" href="./src/imports.html">
+		<link rel="stylesheet" type="text/css" href="./css/login.css">
+	</head>
+	<body>
+		<header>
+			<site-header></site-header>
+		</header>
+		<main>
+			<div id="login_panel">
+				<h1>LOGIN</h1>
+				<mtl-input label="User Name" name="username" pattern="[A-Za-z0-9]"></mtl-input>
+				<mtl-input label="Password" name="password" type="password" pattern="[A-Za-z0-9]"></mtl-input>
+				<mtl-submit color="#F91" onclick="validate()">LOGIN</mtl-submit>
+				<A href="register.html"><mtl-button color="#FFF" width="100%" ripple="#F91">NO ACCOUNT? REGISTER</mtl-button></A>
+			</div>
+		</main>
+	</body>
+	<script>
+		function validate() {
+			show_snackbar("Login successful!");
+		}
+	</script>
+</html>

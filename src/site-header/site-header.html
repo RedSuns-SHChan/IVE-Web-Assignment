@@ -1,0 +1,248 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/font-roboto/roboto.html">
+<link rel="import" href="../nav-item/nav-item.html">
+<link rel="import" href="../../bower_components/paper-ripple/paper-ripple.html">
+
+<dom-module id="site-header">
+	<template>
+		<style>
+			
+			
+			#container
+			{
+				margin: 0px;
+				padding: 48px;
+				font-family: "Roboto", "Arial";
+				transition: 300ms all ease-out;
+				z-index: 99;
+			}
+			
+			img
+			{
+				width: 35px;
+				vertical-align: middle;
+				margin-right: 12px;
+			}
+			
+			span
+			{
+				vertical-align: middle;
+				font-size: 1.3rem;
+			}
+			
+			#logo
+			{
+				color: #FFF;
+				text-decoration: none;
+			}
+			
+			nav
+			{
+				display: block;
+				transition: 300ms all ease-out;
+			}
+			
+			nav-item
+			{
+				--nav-item-text-color: #EFEFEF;
+				--nav-item-onclick-color: rgb(255, 100, 0);
+				--nav-item-hr-color: rgb(255, 100, 0);
+			}
+			
+			#header_btn_login
+			{
+				position: relative;
+				margin-left: 24px;
+				padding: 16px 24px 16px 24px;
+				vertical-align: middle;
+				font-size: 1rem;
+				letter-spacing: 1px;
+				color: #FFF;
+				border: 2px #FFF solid;
+				background-color: rgba(0, 0, 0, 0);
+				outline: none;
+				cursor: pointer;
+				transition: 300ms all;
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-o-user-select: none;
+				user-select: none;
+			}
+			
+			#header_btn_login:hover
+			{
+				border: 2px #F91 solid;
+				color: #F91;
+				transition: 300ms all;
+			}
+			
+			#header_btn_login:active
+			{
+				border: 2px #F91 solid;
+				color: #FFF;
+				transition: 300ms all;
+			}
+			
+			#header_btn_login > paper-ripple
+			{
+				color: #F91;
+			}
+			
+			#menu_icon
+			{
+				display: none;
+				transition: 200ms all ease-out;
+			}
+			
+			#menu_icon:active
+			{
+				background: rgba(255, 150, 10, 0.6);
+				transition: 200ms all ease-out;
+			}
+			
+			@media screen and (min-width: 901px)
+			{
+				#logo
+				{
+					float: left;
+				}
+				
+				nav
+				{
+					float: right;
+				}
+				
+				#header_btn_login
+				{
+					float: right;
+				}
+			}
+			
+			@media screen and (max-width: 900px)
+			{
+				#container
+				{
+					position: fixed;
+					top: 0px;
+					left: 0px;
+					width: 100%;
+					background-color: #202020;
+					box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.5);
+					padding: 18px;
+					padding-bottom: 0px;
+				}
+				
+				#logo > div
+				{
+					padding: 8px 0px 8px 0px;
+				}
+				
+				#header_btn_login
+				{
+					display: none;
+				}
+				
+				nav
+				{
+					float: bottom;
+				}
+			}
+			
+			@media screen and (max-width: 480px)
+			{	
+				#container
+				{
+					padding: 0px;
+				}
+				
+				#menu_icon
+				{
+					display: inline-block;
+					text-align: right;
+					color: #FFF;
+					position: absolute;
+					right: 0px;
+					top: 0px;
+					padding: 20px;
+					cursor: pointer;
+				}
+				
+				#logo
+				{
+					display: inline-block;
+				}
+				
+				nav
+				{
+					transition: 300ms all ease-out;
+					overflow: hidden;
+					max-height: 0px;
+				}
+				
+				nav-item
+				{
+					display: block;
+					--nav-item-hori-padding: 45vw;
+				}
+			}
+		</style>
+		<div id="container">
+			<A href="index.html" id="logo">
+				<div>
+					<img src="./images/logo.png">
+					<span>G2 E-Sport Fans Club</span>
+				</div>
+			</A>
+			<A href="login.html"><button id="header_btn_login"><paper-ripple></paper-ripple>LOGIN</button></A>
+			<nav>
+				<nav-item link="index.html">HOME</nav-item>
+				<nav-item link="team.html">TEAM</nav-item>
+				<nav-item link="events.html">EVENTS</nav-item>
+				<nav-item link="shop.html">SHOP</nav-item>
+				<nav-item link="about.html">ABOUT</nav-item>
+			</nav>
+			<div id="menu_icon" on-click="onClickMenu">&#9776;</div>
+		</div>
+	</template>
+	<script>
+		class SiteHeader extends Polymer.Element {
+			
+			static get is() { return "site-header"; }
+			
+			static get properties() {
+				return {
+					menuOpened : {
+						type: String,
+						value: "false"
+					}
+				};
+			}
+			
+			ready() {
+				super.ready();
+				this.menuOpened = false;
+				var nav = Polymer.dom(this.root).querySelector("nav");
+				window.addEventListener("resize", function() {
+					if (window.innerWidth >= 480) {
+						nav.style.maxHeight = "500px";
+					} else {
+						nav.style.maxHeight = "0px";
+					}
+				});
+			}
+			
+			onClickMenu() {
+				var nav = Polymer.dom(this.root).querySelector("nav");
+				if (this.menuOpened == "false") {
+					nav.style.maxHeight = "500px";
+					this.menuOpened = "true";
+				} else {
+					nav.style.maxHeight = "0px";
+					this.menuOpened = "false";
+				}
+			}
+			
+		}
+		customElements.define(SiteHeader.is, SiteHeader);
+	</script>
+</dom-module>

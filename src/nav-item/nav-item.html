@@ -1,0 +1,81 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/font-roboto/roboto.html">
+<link rel="import" href="../../bower_components/paper-ripple/paper-ripple.html">
+
+<dom-module id="nav-item">
+	<template>
+		<style>
+			
+			:host {
+				--nav-item-text-color: #000000;
+				--nav-item-onclick-color: rgb(255, 0, 0);
+				--nav-item-hr-color: rgb(255, 0, 0);
+				--nav-item-hori-padding: 16px;
+				--nav-item-vert-padding: 16px;
+			}
+			
+			A {
+				position: relative;
+				font-family: "Roboto", Arial, Helvetica, sans-serif;
+				display: inline-block;
+				color: var(--nav-item-text-color);
+				text-decoration: none;
+				padding: var(--nav-item-vert-padding) var(--nav-item-hori-padding) var(--nav-item-vert-padding) var(--nav-item-hori-padding);
+				transition: all 200ms;
+			}
+			
+			paper-ripple {
+				color: var(--nav-item-onclick-color);
+			}
+			
+			A > hr {
+				position: absolute;
+				margin: 0px;
+				left: 50%;
+				bottom: 0px;
+				transform: translateX(-50%);
+				border: none;
+				background-color: var(--nav-item-hr-color);
+				height: 3px;
+				transition: all 200ms ease-out;
+			}
+			
+			A:not(:hover) > hr {
+				width: 0%;
+			}
+			
+			A:hover > hr {
+				width: 100%;
+			}
+		</style>
+		<A href="{{link}}" on-click="onClick"><paper-ripple></paper-ripple>{{content}}<hr></A>
+		
+	</template>
+	<script>
+		class NavItem extends Polymer.Element {
+			
+			static get is() { return "nav-item"; }
+			
+			static get properties() {
+				return {
+					link : {
+						type: String,
+						value: ""
+					},
+					content : {
+						type: String,
+						value: ""
+					}
+				};
+			}
+
+			ready() {
+				super.ready();
+				this.content = this.innerHTML;
+			}
+
+			onClick() {}
+		}
+		customElements.define(NavItem.is, NavItem);
+	</script>
+</dom-module>

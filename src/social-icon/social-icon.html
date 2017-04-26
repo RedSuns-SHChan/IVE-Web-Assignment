@@ -1,0 +1,90 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<script src="../../jquery.min.js"></script>
+
+<dom-module id="social-icon">
+	<template>
+		<style>
+			:host
+			{
+				--social-icon-color: #FFF;
+				padding: 0px 8px 0px 8px;
+			}
+
+			div
+			{
+				width: [[size]];
+				height: [[size]];
+			}
+
+			svg
+			{
+				color: var(--social-icon-color);
+				fill: currentColor;
+				width: [[size]];
+				height: [[size]];
+			}
+		</style>
+		<A href="{{link}}"><div id="container"></div></A>
+	</template>
+	<script>
+		class SocialIcon extends Polymer.Element {
+			
+			static get is() { return "social-icon"; }
+			
+			static get properties() {
+				return {
+					ext : {
+						type: String,
+						value: ""
+					},
+					name : {
+						type: String,
+						value: ""
+					},
+					size : {
+						type: String,
+						value: ""
+					},
+					link : {
+						type: String,
+						value: ""
+					}
+				};
+			}
+			
+			constructor() {
+				super();
+				this.name = "";
+				this.ext = "svg";
+				this.size = "28px";
+				this.inner = "";
+				this.link = "#";
+			}
+
+			ready() {
+				super.ready();
+				var url = "/src/social-icon/icons/" + this.name + "-logo." + this.ext;
+				var container = Polymer.dom(this.root).querySelector("#container");
+				if (this.ext == "svg") {
+					jQuery.get(url, function(data) {
+						var $svg = jQuery(data).find('svg');
+						$svg = $svg.removeAttr('xmlns:a');
+						if(!$svg.attr('viewBox') && $svg.attr('height') && $svg.attr('width')) {
+							$svg.attr('viewBox', '0 0 ' + $svg.attr('height') + ' ' + $svg.attr('width'))
+						}
+						var html = $('<div>').append($svg.clone()).html();
+						container.innerHTML = html;
+					}, 'xml');
+				} else {
+					var img = document.createElement("img");
+					img.setAttribute("src", this.link);
+					img.style.width = this.size;
+					container.innerHTML = img.outerHTML;
+				}
+			}
+			
+		}
+		customElements.define(SocialIcon.is, SocialIcon);
+	</script>
+</dom-module>

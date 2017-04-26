@@ -1,0 +1,222 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/font-roboto/roboto.html">
+<link rel="import" href="../cookiezijs/cookiezijs.html">
+
+<dom-module id="event-item">
+	<template>
+		<style>
+
+			#container
+			{
+				font-family: "Roboto", Arial;
+				position: relative;
+				border-radius: 3px;
+				display: block;
+				margin: 8px auto 8px auto;
+				padding: 24px;
+				box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.7);
+				width: 40%;
+				min-width: 320px;
+				color: #FFF;
+				overflow: hidden;
+                transition: 100ms all ease-out;
+                background: linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.8)), url("../../[[image]]");
+                background-size: cover;
+                background-position: center;
+                background-attachment: fixed;
+                transform-origin: top;
+			}
+
+			#bg
+			{
+				position: fixed;
+				top: 0px;
+				left: 0px;
+				margin: 0px;
+				padding: 0px;
+                width: 100%;
+                height: 100%;
+                object-fit: fill;
+				z-index: -1;
+				filter: brightness(0.3);
+			}
+
+			.flex
+			{
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: space-between;
+			}
+
+			#info > h1
+			{
+                font-weight: normal;
+                text-align: left;
+                margin: 0px;
+            }
+
+            #info
+            {
+                padding: 8px;
+                text-align: left;
+            }
+
+			#more
+			{
+                font-family: sans-serif;
+				color: #FFF;
+				outline: none;
+				border: none;
+				box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.7);
+				border-radius: 3px;
+				background-color: #333;
+				vertical-align: middle;
+				margin-top: 4px;
+				margin-left: 16px;
+				width: 28px;
+				height: 28px;
+				cursor: pointer;
+			}
+
+			#more:hover
+			{
+				background-color: #444;
+				transition: 200ms all;
+			}
+
+			#more:active
+			{
+				background-color: #777;
+				transition: 200ms all;
+			}
+
+			#description
+			{
+				overflow: hidden;
+                padding-left: 8px;
+                transition: 600ms all ease-out;
+                transform-origin: bottom;
+			}
+
+			mtl-button
+			{
+				position: absolute;
+				top: 0px;
+				right: 0px;
+				margin: 24px;
+			}
+
+		</style>
+		<div id="container">
+			<!--<img id="bg" src="{{image}}">-->
+			<mtl-button id="joined" color="#4F4" on-click="onClickJoin">JOIN</mtl-button>
+			<div class="flex">
+				<div id="info">
+					<h1>{{name}}<button id="more" on-click="onClickViewMore">&#9660;</button></h1>
+					<p><b>DATE : </b>{{date}} | <b>AMOUNT : </b>{{amount}} people</p>
+				</div>
+			</div>
+			<div id="description">
+				<p><b>Event Description</b></p>
+				<p>{{description}}</p>
+			</div>
+		</div>
+	</template>
+	<script>
+		class EventItem extends Polymer.Element {
+			static get is() { return "event-item"; }
+
+			static get properties() {
+				return {
+					eid: {
+						type: String
+					},
+					image: {
+						type: String
+					},
+					name: {
+						type: String
+					},
+					date: {
+						type: String
+					},
+					amount: {
+						type: String
+					},
+					description: {
+						type: String
+					},
+					expanded: {
+						type: String,
+						value: "false",
+						observer: "_expandListener"
+					},
+					joined : {
+						type: String,
+						value: "false",
+						observer: "_joinEventListener"
+					}
+				};
+			}
+
+			constructor() {
+				super();
+				this.name = "NO EVENT NAME";
+				this.image = "";
+			}
+
+			ready() {
+				super.ready();
+				this.description = this.innerText;
+				if (this.image.length > 1) {
+					this.image = "../../" + this.image;
+				}
+				if (is_cookie_exists("joined@" + this.eid)) {
+					this.joined = get_cookie("joined@" + this.eid);
+				}
+			}
+
+			onClickViewMore() {
+				if (this.expanded == "false") {
+					this.expanded = "true";
+				} else {
+					this.expanded = "false";
+				}
+			}
+
+			onClickJoin() {
+				if (!is_cookie_exists("joined@" + this.eid)) {
+					this.joined = "true";
+					show_snackbar("You have joined event: " + this.name);
+				} else {
+					this.joined = "false";
+					remove_cookie("joined@" + this.eid);
+					show_snackbar("Cancelled event: " + this.name);
+				}
+			}
+
+			_expandListener(value, oldValue) {
+				var description = Polymer.dom(this.root).querySelector("#description");
+				if (this.expanded == "false") {
+					description.style.maxHeight = "0px";
+				} else {
+					description.style.maxHeight = "100vh";
+				}
+			}
+			
+			_joinEventListener(value, oldValue) {
+				var button = Polymer.dom(this.root).querySelector("#joined");
+				if (value == "true") {
+					button.color = "#F44";
+					button.content = "CANCEL";
+					set_cookie("joined@" + this.eid, "true");
+				} else {
+					button.color = "#4F4";
+					button.content = "JOIN";
+				}
+			}
+			
+		}
+		customElements.define(EventItem.is, EventItem);
+	</script>
+</dom-module>

@@ -1,0 +1,51 @@
+header
+{
+    background-size: cover;
+    color: #FFF;
+    overflow: hidden;
+    position: relative;
+}
+
+#background
+{
+    filter: brightness(0.5) blur(10px);
+    overflow: hidden;
+    z-index: -1;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    object-fit: cover;
+}
+
+main
+{
+    margin-top: 24px;
+    margin-bottom: 64px;
+}
+
+#title
+{
+    padding: 68px;
+    display: block;
+    margin: auto;
+    width: 50%;
+}
+
+#title > h1
+{
+    font-size: 2.5rem;
+}
+
+#title > h2
+{
+    font-size: 1.5rem;
+    font-weight: lighter;
+}
+
+event-item
+{
+    padding: 4px;
+}

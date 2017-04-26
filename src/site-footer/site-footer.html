@@ -1,0 +1,165 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/font-roboto/roboto.html">
+<link rel="import" href="../../src/social-icon/social-icon.html">
+
+<dom-module id="site-footer">
+	<template>
+		<style>
+			#container
+			{
+				font-family: "Roboto", Arial, Helvetica, sans-serif;
+				min-height: 300px;
+				width: 100%;
+				position: relative;
+				background-color: #202020;
+				color: #EFEFEF;
+			}
+
+			#upper
+			{
+				display:block;
+				position: relative;
+				min-height: 250px;
+			}
+
+			#lower
+			{
+				display: block;
+				position: relative;
+				background-color: #101010;
+				height: 50px;
+				border-top: 1px solid #F91;
+			}
+
+			#lower > div
+			{
+				line-height: 50px;
+				height: 50px;
+				margin-left: 24px;
+				font-size: 0.8rem;
+			}
+
+			#sponsors
+			{
+				text-align: center;
+				margin: auto;
+				padding: 24px;
+			}
+
+			#sponsors > p
+			{
+				color: #999;
+				font-weight: bold;
+			}
+
+			p
+			{
+				display: block;
+				color: #999;
+				font-weight: bold;
+				text-align: center;
+			}
+
+			#sponsors > .sponsor
+			{
+				display: inline-block;
+				width: 100px;
+				height: 30px;
+				background-color: rgba(255, 150, 10, 0.2);
+				border: 1px solid rgba(255, 150, 10, 0.7);
+				margin: 0px 12px 0px 12px;
+			}
+
+			#related_links
+			{
+				text-align: center;
+				color: #444;
+				padding: 24px;
+				cursor: default;
+			}
+
+			#related_links > A
+			{
+				color: #999;
+				text-decoration: none;
+				font-size: 0.8rem;
+				padding: 8px;
+				cursor: pointer;
+			}
+
+			#related_links > A:hover
+			{
+				text-decoration: underline;
+			}
+
+			#icons
+			{
+				width: 15%;
+				padding: 0px;
+				margin: auto;
+				display: flex;
+				-webkit-flex-wrap: wrap;
+				flex-wrap: nowrap;
+				justify-content: space-around;
+			}
+
+			social-icon
+			{
+				display: flex;
+				--social-icon-color: #444;
+			}
+
+			social-icon:hover
+			{
+				--social-icon-color: #F91;
+			}
+
+		</style>
+		<div id="container">
+			<div id="upper">
+				<div class="wrapper">
+					<div id="sponsors">
+						<p>Sponsored By</p>
+						<div class="sponsor"></div>
+						<div class="sponsor"></div>
+						<div class="sponsor"></div>
+						<div class="sponsor"></div>
+					</div>
+					<p>Follow Us</p>
+					<div id="icons">
+						<social-icon name="facebook"></social-icon>
+						<social-icon name="twitter"></social-icon>
+						<social-icon name="youtube"></social-icon>
+						<social-icon name="tumblr-letter"></social-icon>
+					</div>
+					<div id="related_links">
+						<A href="index.html">HOME</A>|
+						<A href="team.html">TEAM</A>|
+						<A href="events.html">EVENTS</A>|
+						<A href="shop.html">SHOP</A>|
+						<A href="about.html">ABOUT</A>
+					</div>
+				</div>
+			</div>
+			<div id="lower">
+				<div>Copyright (C) G2 E-Sports Fans Club 2017</div>
+			</div>
+		</div>
+	</template>
+	<script>
+		class SiteFooter extends Polymer.Element {
+			
+			static get is() { return "site-footer"; }
+			
+			static get properties() {
+				return {};
+			}
+			
+			ready() {
+				super.ready();
+			}
+			
+		}
+		customElements.define(SiteFooter.is, SiteFooter);
+	</script>
+</dom-module>

@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Register - Gamers2 E-Sports Fans Club</title>
+		<script src="./bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+		<link rel="import" href="./src/imports.html">
+		<link rel="stylesheet" type="text/css" href="./css/register.css">
+	</head>
+	<body>
+		<header>
+			<site-header></site-header>
+		</header>
+		<main>
+			<div id="register_panel">
+				<h1>REGISTER</h1>
+				<mtl-input label="User Name" name="username" pattern="[A-Za-z0-9]"></mtl-input>
+				<mtl-input label="Password" name="password" type="password" pattern="[A-Za-z0-9]"></mtl-input>
+				<mtl-input label="Confirm Password" name="password_confirm" type="password" pattern="[A-Za-z0-9]"></mtl-input>
+				<mtl-input label="Name" name="realname" pattern="[A-Za-z]"></mtl-input>
+				<mtl-input label="E-Mail" name="email" type="email"></mtl-input>
+				<mtl-input label="Phone" name="phone" pattern="[0-9]"></mtl-input>
+				<mtl-submit color="#F91" onclick="validate()">REGISTER</mtl-submit>
+			</div>
+		</main>
+	</body>
+	<script>
+		function validate() {
+		}
+	</script>
+</html>

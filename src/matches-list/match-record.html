@@ -1,0 +1,170 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/font-roboto/roboto.html">
+<link rel="import" href="../../bower_components/paper-ripple/paper-ripple.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
+<dom-module id="match-record">
+	<template>
+		<style>
+			:host
+			{
+				transition: all 200ms ease-out;
+			}
+			
+			#container
+			{
+				cursor: default;
+				text-align: center;
+				color: #EFEFEF;
+				background-color: #404040;
+				border-radius: 2px;
+				box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.6);
+				margin: 8px;
+				padding: 10px 24px 10px 24px;
+				position: relative;
+				transition: all 200ms ease-out;
+			}
+			
+			#container:hover
+			{
+				box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.5);
+				transition: all 200ms ease-out;
+			}
+			
+			#container > paper-ripple
+			{
+				color: #606060;
+			}
+			
+			#container > p
+			{
+				padding: 0px;
+				margin: 0px;
+				vertical-align: middle;
+				font-size: 1em;
+			}
+			
+			.teamname
+			{
+				padding: 0px 8px 0px 8px;
+				font-size: 1.3em;
+				vertical-align: middle;
+			}
+			
+			@media screen and (max-width: 480px)
+			{
+				.teamname
+				{
+					display: none;
+				}
+			}
+			
+			.winner
+			{
+				display: none;
+			}
+			
+			img
+			{
+				vertical-align: middle;
+				height: 40px;
+			}
+			
+			button
+			{
+				position: relative;
+				float: right;
+				top: -40px;
+				display: block;
+				overflow: hidden;
+				outline: none;
+				border: 1px solid #333;
+				background-color: transparent;
+				color: #EFEFEF;
+				width: 40px;
+				height: 40px;
+				cursor: pointer;
+			}
+			
+			#team1mark
+			{
+				font-size: 1.2em;
+				font-weight: bold;
+				vertical-align: middle;
+				margin-left: 12px;
+				margin-right: 12px;
+			}
+			
+			#team2mark
+			{
+				font-size: 1.2em;
+				font-weight: bold;
+				vertical-align: middle;
+				margin-left: 12px;
+				margin-right: 12px;
+			}
+			
+		</style>
+		<div id="container">
+			<p><img src="/images/teams/{{team1}}.png"><span class="teamname">{{team1}}</span> <span id="team1mark">{{score1}}</span> : <span id="team2mark">{{score2}}</span> <span class="teamname">{{team2}}</span><img src="/images/teams/{{team2}}.png"></p>
+			<iron-ajax auto url="/images/teams/{{team1}}.cfg" handle-as="text" on-response="onTeam1NameLoaded"></iron-ajax>
+			<iron-ajax auto url="/images/teams/{{team2}}.cfg" handle-as="text" on-response="onTeam2NameLoaded"></iron-ajax>
+		</div>
+	</template>
+	<script>
+		class MatchRecord extends Polymer.Element {
+			
+			static get is() { return "match-record"; }
+			
+			static get properties() {
+				return {
+					team1 : {
+						type : String,
+						value : "Team 1"
+					},
+					
+					team2 : {
+						type : String,
+						value : "Team 2"
+					},
+					
+					score1 : {
+						type: Number,
+						value : 0
+					},
+					
+					score2 : {
+						type: Number,
+						value: 0
+					}
+				}
+			}
+			
+			ready() {
+				super.ready();
+				var team1mark = Polymer.dom(this.root).querySelector("#team1mark");
+				var team2mark = Polymer.dom(this.root).querySelector("#team2mark");
+				
+				if (this.score1 > this.score2) {
+					team1mark.style.color = "#0F0";
+					team2mark.style.color = "#F00";
+				} else if (this.score2 > this.score1) {
+					team1mark.style.color = "#F00";
+					team2mark.style.color = "#0F0";
+				}
+			}
+			
+			onTeam1NameLoaded(e) {
+				var teams = Polymer.dom(this.root).querySelectorAll(".teamname");
+				teams[0].innerHTML = e.detail.response;
+			}
+			
+			onTeam2NameLoaded(e) {
+				var teams = Polymer.dom(this.root).querySelectorAll(".teamname");
+				teams[1].innerHTML = e.detail.response;
+			}
+			
+		}
+		customElements.define(MatchRecord.is, MatchRecord);
+	</script>
+</dom-module>

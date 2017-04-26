@@ -1,0 +1,34 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/font-roboto/roboto.html">
+
+<dom-module id="icon-csteam">
+	<template>
+		<style>
+			img {
+				display: block;
+				width: 50px;
+			}
+		</style>
+		<img src="./src/icon-csteam/teams/{{team}}.png">
+	</template>
+	<script>
+		class IconCsteam extends Polymer.Element {
+			static get is() { return "icon-csteam"; }
+			
+			static get properties() {
+				return {
+					team : {
+						type : String
+					}
+				}
+			}
+			
+			ready() {
+				super.ready();
+				this.team = this.innerHTML;
+			}
+			
+		}
+		customElements.define(IconCsteam.is, IconCsteam);
+	</script>
+</dom-module>

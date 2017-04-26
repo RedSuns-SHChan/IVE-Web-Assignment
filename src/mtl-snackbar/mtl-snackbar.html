@@ -1,0 +1,120 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/font-roboto/roboto.html">
+
+<dom-module id="mtl-snackbar">
+	<template>
+		<style>
+			#container
+			{
+				pointer-events: none;
+				font-family: "Roboto", Arial;
+				font-weight: lighter;
+				text-align: center;
+				min-width: 300px;
+				padding: 12px 24px 12px 24px;
+				background-color: #1A1A1A;
+				color: #EFEFEF;
+				visibility: hidden;
+				z-index: 5;
+				position: fixed;
+				bottom: 30px;
+				right: 30px;
+				border-radius: 3px;
+				box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.6);
+			}
+
+			#container.show
+			{
+				visibility: visible;
+				-webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+				animation: fadein 0.5s, fadeout 0.5s 2.5s;
+			}
+
+			@-webkit-keyframes fadein {
+				from {bottom: 0; opacity: 0;} 
+				to {bottom: 30px; opacity: 1;}
+			}
+
+			@keyframes fadein {
+				from {bottom: 0; opacity: 0;}
+				to {bottom: 30px; opacity: 1;}
+			}
+
+			@-webkit-keyframes fadeout {
+				from {bottom: 30px; opacity: 1;} 
+				to {bottom: 0; opacity: 0;}
+			}
+
+			@keyframes fadeout {
+				from {bottom: 30px; opacity: 1;}
+				to {bottom: 0; opacity: 0;}
+			}
+
+		</style>
+		<div id="container">
+			[[content]]
+		</div>
+	</template>
+	<script>
+		class MtlSnackbar extends Polymer.Element {
+			
+			static get is() { return "mtl-snackbar"; }
+			
+			static get properties() {
+				return {
+					showed : {
+						type: String,
+						value: "false",
+						observer: "_snackbarDisplayListener"
+					},
+					content : {
+						type: String,
+						value: ""
+					},
+					time : {
+						type: String,
+						value: ""
+					}
+				};
+			}
+			
+			constructor() {
+				super();
+				this.time = "2800";
+			}
+
+			ready() {
+				super.ready();
+			}
+
+			_snackbarDisplayListener(value, oldVal) {
+				console.log("Snackbar showed : " + value);
+				var container = Polymer.dom(this.root).querySelector("#container");
+				var snackbar = this;
+				if (value == "true") {
+					container.className = "show";
+					setTimeout(function(){
+						container.className = "";
+						snackbar.showed = "false";
+					}, this.time);
+				} else {
+					container.className = "";
+				}
+			}
+
+		}
+		customElements.define(MtlSnackbar.is, MtlSnackbar);
+
+		document.body.appendChild(document.createElement("mtl-snackbar"));
+
+		function show_snackbar(msg, time) {
+			var snackbar = document.querySelector("mtl-snackbar");
+			snackbar.content = msg;
+			if (time) {
+				snackbar.time = time;
+			}
+			snackbar.showed = "true";
+		}
+
+	</script>
+</dom-module>
