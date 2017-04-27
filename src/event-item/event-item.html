@@ -226,10 +226,6 @@
 			ready() {
 				super.ready();
 				this.description = this.innerHTML;
-				//var content = Polymer.dom(this.root).querySelector("#description_content");
-				//var c = injectBoundHTML(this.innerHTML, content);
-				//console.error(c.innerText);
-				
 				if (this.image.length > 1) {
 					this.image = "../../" + this.image;
 				}

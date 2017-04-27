@@ -151,8 +151,12 @@ form > div
 	position: relative;
 }
 
-#ripple > input[type="submit"]
+#ripple > #submit
 {
+	border: none;
+	outline: none;
+	border-radius: 2px;
+	font-size: 18px;
 	position: relative;
 	cursor: pointer;
 	background-color: #F60;
