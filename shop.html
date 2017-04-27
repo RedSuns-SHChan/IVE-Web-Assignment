@@ -10,6 +10,7 @@
 		<link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
 		<script src="./bower_components/webcomponentsjs/webcomponents-lite.js"></script>
 		<link rel="import" href="./src/imports.html">
+		<link rel="import" href="./src/shop-product/shop-product.html">
 		<link rel="stylesheet" href="./css/common.css">
 		<link rel="stylesheet" href="./css/shop.css">
 	</head>
@@ -24,12 +25,37 @@
 					<h2>Buy our peripheral products to maintain our operation</h2>
 				</div>
 			</div>
+			<div id="added">
+				<div id="selected_amount">
+					<b>Selected: </b><span id="selected_amount_num">0</span>
+				</div>
+				<div id="total_price">
+					<b>Total Price: </b><span id="total_price_num">$0</span>
+				</div>
+				<mtl-button color="#F44" width="72px" height="36px" onclick="onClickResetButton()">reset</mtl-button>
+				<mtl-button color="#3DF" width="72px" height="36px">PAY</mtl-button>
+			</div>
 			<div id="products">
-			
+				<h1>&#128293;HOT ITEMS</h1>
+				<div id="hots">
+					<shop-product img="./images/products/jacket_update.jpg" price="$200">Jacket (BLACK)</shop-product>
+					<shop-product img="./images/products/pro.jpg" price="$1500">Casual Gaming Chair</shop-product>
+					<shop-product img="./images/products/casual.jpg" price="$25">Pro-Gamer Chair</shop-product>
+				</div>
+				<h1>OTHERS ITEMS</h1>
+				<div id="others">
+					<shop-product img="./images/products/bracelet.jpg" price="$50">G2 Bracelet</shop-product>
+					<shop-product img="./images/products/g2_t-shirt.jpg" price="$150">G2 T-Shirt</shop-product>
+					<shop-product img="./images/products/g2-key-chain.jpg" price="$90">G2 Key Chain</shop-product>
+					<shop-product img="./images/products/g2-pin.jpg" price="$40">G2 Pin</shop-product>
+					<shop-product img="./images/products/snapback.jpg" price="$220">Snapback</shop-product>
+					<shop-product img="./images/products/jersey_2017.jpg" price="$300">Jersey (2017)</shop-product>
+					<shop-product img="./images/products/hoodie_new_update.jpg" price="$450">Hoodie (2017)</shop-product>
 			</div>
 		</main>
 		<footer>
 			<site-footer></site-footer>
 		</footer>
+		<script src="./js/shop.js"></script>
 	</body>
 </html>

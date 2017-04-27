@@ -69,7 +69,7 @@
 
 			ready() {
 				super.ready();
-				var url = "/src/social-icon/icons/" + this.name + "-logo." + this.ext;
+				var url = "./src/social-icon/icons/" + this.name + "-logo." + this.ext;
 				var container = Polymer.dom(this.root).querySelector("#container");
 				if (this.ext == "svg") {
 					jQuery.get(url, function(data) {

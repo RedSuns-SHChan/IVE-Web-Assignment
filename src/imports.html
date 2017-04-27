@@ -1,3 +1,23 @@
+
+<script>
+
+function injectBoundHTML(code, element) {
+	var template = document.createElement("template", "dom-bind");
+	var doc = template.content.ownerDocument;
+	var div = doc.createElement("div");
+	div.innerHTML = code;
+	template.content.appendChild(div);
+	while (element.firstChild) {
+		element.removeChild(element.firstChild);
+		element.appendChild(Polymer.Base.instanceTemplate(template));
+	}
+	return element;
+}
+
+</script>
+
+
+
 <!-- Required Components -->
 <link rel="import" href="./../bower_components/polymer/polymer.html">
 <link rel="import" href="./../bower_components/font-roboto/roboto.html">

@@ -6,8 +6,26 @@ header
 
 #banner
 {
-	background-color: #F60;
+	position: relative;
 	color: #FFF;
+	overflow: hidden;
+	background:  linear-gradient(rgba(225, 100, 0, 0.7),rgba(225, 100, 0, 0.7)), url("../images/frenchrevwallpaper.png");
+	background-size: cover;
+	background-attachment: scroll;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+#banner > #bg
+{
+	position: absolute;
+	bottom: -90px;
+	left: 0px;
+	width: 100%;
+	z-index: -1;
+	-o-object-fit: fill;
+	object-fit: fill;
+	margin: auto;
 }
 
 #banner > #title
@@ -25,4 +43,65 @@ header
 #banner > #title > h1
 {
 	font-size: 4.2rem;
+}
+
+#products
+{
+	margin: auto;
+	width: 70%;
+	padding-bottom: 64px;
+}
+
+#products > div
+{
+	display: flex;
+	flex-wrap: wrap;
+}
+
+#products > h1
+{
+	color: #F82;
+	font-size: 2.4rem;
+	font-weight: lighter;
+	margin: 48px 0px 8px 0px;
+}
+
+#added
+{
+	margin: 0px;
+	padding: 0px;
+	background-color: #A40;
+	color: #FFF;
+}
+
+#added > *
+{
+	display: inline-block;
+	margin: 0px 24px 0px 24px;
+}
+
+@media screen and (max-width: 950px)
+{
+	header
+	{
+		padding-top: 0px !important;
+	}
+}
+
+@media screen and (max-width: 480px)
+{
+	header
+	{
+		height: 0px;
+	}
+	
+	#banner
+	{
+		padding-top: 56px;
+	}
+
+	#added > div
+	{
+		margin: 12px 8px 12px 8px;
+	}
 }

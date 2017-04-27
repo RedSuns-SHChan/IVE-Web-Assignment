@@ -1,0 +1,201 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/font-roboto/roboto.html">
+
+<dom-module id="shop-product">
+	<template>
+		<style>
+			:host
+			{
+				font-family: "Roboto", Arial, Helvetica, sans-serif;
+			}
+
+			::moz-selection
+			{
+				background-color: rgba(255, 110, 25, 0.5);
+				text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.5);
+			}
+
+			::selection
+			{
+				background-color: rgba(255, 110, 25, 0.5);
+				text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.5);
+			}
+
+			#container
+			{
+				display: block;
+				position: relative;
+				margin: 8px;
+				box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.8);
+				transition: 500ms all;
+				background-color: #333;
+				color: #EDEDED;
+				width: 240px;
+				height: 300px;
+				border-radius: 2px;
+			}
+
+			#container:hover
+			{
+				box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.8);
+				transition: 500ms all;
+			}
+
+			#image
+			{
+				display: block;
+				border-top-left-radius: 2px; 
+				border-top-right-radius: 2px;
+				position: relative;
+				height: 85%;
+				background-image: url("../../[[img]]");
+				background-size: cover;
+				background-position: bottom;
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-o-user-select: none;
+				user-select: none;
+				cursor: default;
+			}
+
+			#description
+			{
+				position: relative;
+				height: 15%;
+				user-select: none;
+				cursor: default;
+				line-height: 100%;
+			}
+
+			#product_name
+			{
+				text-transform: uppercase;
+				display: block;
+				color: #F92;
+				font-size: 1.8rem;
+				font-weight: normal;
+				text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.8);
+				padding: 8px;
+				letter-spacing: 1px;
+			}
+
+			#name_wrapper
+			{
+				display: block;
+				position: absolute;
+				bottom: 0px;
+				width: 100%;
+				background-color: rgba(0, 0, 0, 0.5);
+			}
+
+			#price
+			{
+				display: block;
+				position: relative;
+				top: 50%;
+				transform: translateY(-50%);
+				padding-left: 12px;
+			}
+
+			#counter
+			{
+				position: absolute;
+				right: 0px;
+				top: 50%;
+				transform: translateY(-50%);
+			}
+
+			#counter > *
+			{
+				display: inline-flex;
+			}
+
+			#amount
+			{
+				background-color: #444;
+				border: none;
+				border-radius: 2px;
+				outline: none;
+				color: #EDEDED;
+				padding: 4px 10px 4px 10px;
+			}
+
+		</style>
+		<div id="container">
+			<div id="image">
+				<div id="name_wrapper">
+					<div id="product_name">[[name]]</div>
+				</div>
+			</div>
+			<div id="description">
+				<div id="price">
+					<b>Price : </b><span>[[price]]</span>
+				</div>
+				<div id="counter">
+					<mtl-button id="addbtn" color="#4F4" on-click="onAddClicked" width="24px" height="24px">+</mtl-button>
+					<span id="amount">{{amount}}</span>
+					<mtl-button id="subbtn" color="#F44" on-click="onSubClicked" width="24px" height="24px">-</mtl-button>
+				</div>
+			</div>
+		</div>
+	</template>
+	<script>
+		class ShopProduct extends Polymer.Element {
+			static get is() { return "shop-product"; }
+			
+			static get properties() {
+				return {
+					name : {
+						type : String,
+						value : "PRODUCT NAME"
+					},
+					price : {
+						type : String,
+						value : "$0"
+					},
+					img : {
+						type : String,
+						value : ""
+					},
+					selected : {
+						type : String,
+						value : "false"
+					},
+					onClick : {
+						type : String
+					},
+					amount : {
+						type : String,
+						value : "0"
+					}
+				};
+			}
+
+			constructor() {
+				super();
+			}
+
+			ready() {
+				super.ready();
+				this.name = this.innerHTML;
+				this.onClick = "console.log(\"[shop-product@" + this.name + "]Custom click event triggered.\");";
+			}
+
+			onAddClicked() {
+				if (this.amount < 100) {
+					this.amount = parseInt(this.amount) + 1;
+				}
+				eval(this.onClick);
+			}
+
+			onSubClicked() {
+				if (this.amount > 0) {
+					this.amount = parseInt(this.amount) - 1;
+				}
+				eval(this.onClick);
+			}
+		}
+		customElements.define(ShopProduct.is, ShopProduct);
+	</script>
+
+</dom-module>

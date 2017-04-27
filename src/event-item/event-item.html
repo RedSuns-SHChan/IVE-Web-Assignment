@@ -15,15 +15,14 @@
 				margin: 8px auto 8px auto;
 				padding: 24px;
 				box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.7);
-				width: 40%;
-				min-width: 320px;
+				width: 60%;
+				min-width: 600px;
 				color: #FFF;
 				overflow: hidden;
                 transition: 100ms all ease-out;
-                background: linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.8)), url("../../[[image]]");
+                background: linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.6)), url("../../[[image]]");
                 background-size: cover;
                 background-position: center;
-                background-attachment: fixed;
                 transform-origin: top;
 			}
 
@@ -61,8 +60,26 @@
                 text-align: left;
             }
 
+			ul
+			{
+				display: flex;
+				list-style: none;
+				margin-top: 24px;
+				padding: 0px;
+				flex-wrap: wrap;
+				justify-content: space-between;
+			}
+
+			li
+			{
+				padding-right: 16px;
+				display: inline-block;
+			}
+
 			#more
 			{
+				position: relative;
+				top: 12px;
                 font-family: sans-serif;
 				color: #FFF;
 				outline: none;
@@ -72,8 +89,7 @@
 				background-color: #333;
 				vertical-align: middle;
 				margin-top: 4px;
-				margin-left: 16px;
-				width: 28px;
+				width: 100%;
 				height: 28px;
 				cursor: pointer;
 			}
@@ -98,32 +114,69 @@
                 transform-origin: bottom;
 			}
 
-			mtl-button
+			#joined
 			{
 				position: absolute;
 				top: 0px;
 				right: 0px;
 				margin: 24px;
+				--mtl-button-width: 64px;
+				--mtl-button-height: 36px;
+			}
+
+			@media screen and (max-width: 900px)
+			{
+				#container
+				{
+					width: 60%;
+					min-width: 400px;
+				}
+
+				.flex, #info
+				{
+					width: 100%;
+				}
+
+				#joined
+				{
+					position: relative;
+					--mtl-button-width: 100%;
+					--mtl-button-height: 36px;
+				}
+			}
+
+			@media screen and (max-width: 480px)
+			{
+				#container
+				{
+					min-width: 200px;
+				}
 			}
 
 		</style>
 		<div id="container">
 			<!--<img id="bg" src="{{image}}">-->
-			<mtl-button id="joined" color="#4F4" on-click="onClickJoin">JOIN</mtl-button>
 			<div class="flex">
 				<div id="info">
-					<h1>{{name}}<button id="more" on-click="onClickViewMore">&#9660;</button></h1>
-					<p><b>DATE : </b>{{date}} | <b>AMOUNT : </b>{{amount}} people</p>
+					<h1>{{name}}</h1>
+					<mtl-button id="joined" color="#4F4" on-click="onClickJoin">JOIN</mtl-button>
+					<ul>
+						<li><b>DATE : </b>{{date}}</li>
+						<li><b>AMOUNT : </b>{{amount}}</li>
+						<li><b>FEE : </b>{{fee}}</li>
+					</ul>
 				</div>
 			</div>
 			<div id="description">
 				<p><b>Event Description</b></p>
-				<p>{{description}}</p>
+				<p id="description_content" inner-h-t-m-l="[[description]]"></p>
 			</div>
+			<button id="more" on-click="onClickViewMore">&#9660;</button>
 		</div>
 	</template>
 	<script>
 		class EventItem extends Polymer.Element {
+
 			static get is() { return "event-item"; }
 
 			static get properties() {
@@ -137,6 +190,9 @@
 					name: {
 						type: String
 					},
+					fee: {
+						type: String
+					},
 					date: {
 						type: String
 					},
@@ -148,13 +204,11 @@
 					},
 					expanded: {
 						type: String,
-						value: "false",
-						observer: "_expandListener"
+						value: "false"
 					},
 					joined : {
 						type: String,
-						value: "false",
-						observer: "_joinEventListener"
+						value: "false"
 					}
 				};
 			}
@@ -163,59 +217,64 @@
 				super();
 				this.name = "NO EVENT NAME";
 				this.image = "";
+				this.joined = "false";
+				this.expanded = "false";
+				var description = Polymer.dom(this.root).querySelector("#description");
+				description.style.maxHeight = "0px";
 			}
 
 			ready() {
 				super.ready();
-				this.description = this.innerText;
+				this.description = this.innerHTML;
+				//var content = Polymer.dom(this.root).querySelector("#description_content");
+				//var c = injectBoundHTML(this.innerHTML, content);
+				//console.error(c.innerText);
+				
 				if (this.image.length > 1) {
 					this.image = "../../" + this.image;
 				}
-				if (is_cookie_exists("joined@" + this.eid)) {
-					this.joined = get_cookie("joined@" + this.eid);
-				}
-			}
-
-			onClickViewMore() {
-				if (this.expanded == "false") {
-					this.expanded = "true";
-				} else {
-					this.expanded = "false";
-				}
-			}
-
-			onClickJoin() {
-				if (!is_cookie_exists("joined@" + this.eid)) {
-					this.joined = "true";
-					show_snackbar("You have joined event: " + this.name);
-				} else {
-					this.joined = "false";
-					remove_cookie("joined@" + this.eid);
-					show_snackbar("Cancelled event: " + this.name);
-				}
-			}
-
-			_expandListener(value, oldValue) {
-				var description = Polymer.dom(this.root).querySelector("#description");
-				if (this.expanded == "false") {
-					description.style.maxHeight = "0px";
-				} else {
-					description.style.maxHeight = "100vh";
-				}
-			}
-			
-			_joinEventListener(value, oldValue) {
+				this.joined = is_cookie_exists("joined@" + this.eid) ? "true" : "false";
 				var button = Polymer.dom(this.root).querySelector("#joined");
-				if (value == "true") {
+				if (this.joined == "true") {
+					console.log("Already joined event : " + this.name);
 					button.color = "#F44";
 					button.content = "CANCEL";
-					set_cookie("joined@" + this.eid, "true");
 				} else {
 					button.color = "#4F4";
 					button.content = "JOIN";
 				}
 			}
-			
+
+			onClickViewMore() {
+				var description = Polymer.dom(this.root).querySelector("#description");
+				var morebtn = Polymer.dom(this.root).querySelector("#more");
+				if (this.expanded == "false") {
+					this.expanded = "true";
+					description.style.maxHeight = "100vh";
+					morebtn.innerHTML = "&#9650;";
+				} else {
+					this.expanded = "false";
+					description.style.maxHeight = "0px";
+					morebtn.innerHTML = "&#9660;";
+				}
+			}
+
+			onClickJoin() {
+				var button = Polymer.dom(this.root).querySelector("#joined");
+				if (!is_cookie_exists("joined@" + this.eid)) {
+					this.joined = "true";
+					show_snackbar("You have joined event: " + this.name);
+					button.color = "#F44";
+					button.content = "CANCEL";
+					set_cookie("joined@" + this.eid, "true");
+				} else {
+					this.joined = "false";
+					remove_cookie("joined@" + this.eid);
+					show_snackbar("Cancelled event: " + this.name);
+					button.color = "#4F4";
+					button.content = "JOIN";
+				}
+			}
 		}
 		customElements.define(EventItem.is, EventItem);
 	</script>

@@ -1,0 +1,24 @@
+main
+{
+	color: #EDEDED;
+	width: 80%;
+	margin: auto;
+}
+
+main > h1
+{
+	font-weight: lighter;
+	font-size: 2.7rem;
+}
+
+main > h1 + p
+{
+	text-transform: uppercase;
+}
+
+#teammates
+{
+	width: 50%;
+	margin: auto;
+	min-width: 600px;
+}

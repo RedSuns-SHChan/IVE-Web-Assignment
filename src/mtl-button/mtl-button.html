@@ -5,6 +5,12 @@
 <dom-module id="mtl-button">
 	<template>
 		<style>
+			:host
+			{
+				--mtl-button-width: initial;
+				--mtl-button-height: initial;
+			}
+
 			div
 			{
 				position: relative;
@@ -13,12 +19,12 @@
 			
 			button
 			{
+				position: relative;
 				font-family: "Roboto", "Arial", sans-serif;
 				outline: none;
 				border: none;
 				text-transform: uppercase;
 				font-weight: bold;
-				padding: 16px;
 				border-radius: 3px;
 				box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.5);
 				cursor: pointer;
@@ -26,6 +32,7 @@
 				width: [[width]];
 				height: [[height]];
 				background-color: [[color]];
+				line-height: [[height]];
 			}
 			
 			button:hover
@@ -70,8 +77,8 @@
 			
 			constructor() {
 				super();
-				this.width = "initial";
-				this.height = "initial";
+				this.width = "var(--mtl-button-width)";
+				this.height = "var(--mtl-button-height)";
 			}
 			
 			ready() {

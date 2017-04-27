@@ -1,0 +1,91 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/font-roboto/roboto.html">
+
+<dom-module id="team-player">
+	<template>
+		<style>
+			#container
+			{
+				display: block;
+				background-color: #333;
+				color: #EDEDED;
+				border-radius: 2px;
+				box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.6);
+				margin: 24px;
+                background: linear-gradient(rgba(255, 50, 0, 0.6),rgba(255, 50, 0, 0.6)), url("../../images/members/[[name]]top.jpg");
+                background-size: cover;
+                background-position: center;
+			}
+
+			#flex
+			{
+				display: flex;
+				height: 100%;
+			}
+
+			#flex > *
+			{
+				height: 100%;
+			}
+
+			#avator
+			{
+				width: 40%;
+				flex-grow: 2;
+			}
+
+			#avator > img
+			{
+				height: 200px;
+				border-bottom: 2px solid #F30;
+			}
+
+			#info
+			{
+				background-color: rgba(0, 0, 0, 0.8);
+				padding: 48px;
+				width: 80%;
+			}
+
+		</style>
+		<div id="container">
+			<div id="flex">
+				<div id="avator">
+					<img src="../../images/members/{{name}}.jpg">
+				</div>
+				<div id="info">
+					<h1>{{name}}</h1>
+					<div id="description" inner-h-t-m-l="{{content}}"></div>
+				</div>
+			</div>
+		</div>
+	</template>
+	<script>
+		class TeamPlayer extends Polymer.Element {
+			static get is() { return "team-player"; }
+
+			static get properties() {
+				return {
+					name : {
+						type : String,
+						value : ""
+					},
+					content : {
+						type : String,
+						value : ""
+					}
+				};
+			}
+
+			constructor() {
+				super();
+			}
+
+			ready() {
+				super.ready();
+				this.content = this.innerHTML;
+			}
+		}
+		customElements.define(TeamPlayer.is, TeamPlayer);
+	</script>
+</dom-module>
